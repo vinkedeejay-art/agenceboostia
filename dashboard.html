@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SvelteShape — Centre de Commande IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Jost', 'Inter', sans-serif; }
+    #root { min-height: 100vh; }
+
+    /* API key modal */
+    #api-modal {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(28,20,14,0.85); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+    }
+    #api-modal.hidden { display: none; }
+    #api-modal .box {
+      background: #FAF8F5; border-radius: 16px; padding: 32px;
+      max-width: 440px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    #api-modal h2 { font-size: 18px; font-weight: 700; color: #1C140E; margin-bottom: 8px; }
+    #api-modal p  { font-size: 13px; color: #7C5A3C; margin-bottom: 20px; line-height: 1.6; }
+    #api-modal input {
+      width: 100%; border: 1.5px solid #F4EEE6; border-radius: 10px;
+      padding: 12px 14px; font-size: 14px; color: #1C140E;
+      outline: none; transition: border-color .2s;
+    }
+    #api-modal input:focus { border-color: #5C3317; }
+    #api-modal button {
+      width: 100%; margin-top: 12px; background: #5C3317; color: #fff;
+      border: none; border-radius: 999px; padding: 13px;
+      font-size: 14px; font-weight: 700; cursor: pointer; transition: background .2s;
+    }
+    #api-modal button:hover { background: #43240F; }
+    #api-modal .skip {
+      text-align: center; margin-top: 10px; font-size: 12px; color: #7C5A3C; cursor: pointer;
+      background: none; width: auto; padding: 0;
+    }
+    #api-modal .skip:hover { background: none; color: #1C140E; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- API key gate (vanilla JS so it works before React loads) -->
+<div id="api-modal">
+  <div class="box">
+    <h2>🔑 Clé API Anthropic</h2>
+    <p>
+      Les agents IA appellent l'API Anthropic directement depuis le navigateur.
+      Saisis ta clé pour activer les agents. Elle ne sera pas stockée.
+    </p>
+    <input type="password" id="api-key-input" placeholder="sk-ant-…" autocomplete="off" />
+    <button id="api-key-confirm">Confirmer</button>
+    <button class="skip" id="api-key-skip">Continuer sans agents IA</button>
+  </div>
+</div>
+
+<div id="root"></div>
+
+<script>
+  window.__ANTHROPIC_KEY = "";
+  document.getElementById("api-key-confirm").addEventListener("click", function () {
+    var val = document.getElementById("api-key-input").value.trim();
+    if (val) window.__ANTHROPIC_KEY = val;
+    document.getElementById("api-modal").classList.add("hidden");
+  });
+  document.getElementById("api-key-skip").addEventListener("click", function () {
+    document.getElementById("api-modal").classList.add("hidden");
+  });
+</script>
+
+<script type="text/babel">
+const { useState, useCallback } = React;
+
+const ESPRESSO      = "#5C3317";
+const ESPRESSO_DARK = "#43240F";
+const GOLD          = "#C9A84C";
+const CREAM         = "#FAF8F5";
+const BEIGE         = "#F4EEE6";
+const MOCHA         = "#7C5A3C";
+const INK           = "#1C140E";
+
+const agents = [
+  { id: "analytics",   icon: "📊", label: "Analytics Reporter",  color: ESPRESSO    },
+  { id: "seo",         icon: "🔍", label: "SEO Content Writer",  color: "#2D6A4F"   },
+  { id: "tiktok",      icon: "🎬", label: "TikTok Scripts",      color: "#1A1A2E"   },
+  { id: "concurrents", icon: "🎯", label: "Concurrent Watcher",  color: "#7B2D8B"   },
+  { id: "cro",         icon: "⚡", label: "CRO Optimizer",       color: "#C25B0A"   },
+];
+
+const agentPrompts = {
+  analytics: `Tu es le directeur e-commerce de SvelteShape (getsvelteshape.fr), boutique française vendant un body sculptant invisible à 34,99€ en 3 coloris (Noir, Beige, Marron).
+
+Voici les données analytics de la semaine (Shopify) :
+- Total sessions : 269
+- Sources : Direct 184, Search 64, Social (TikTok) 21
+- Sessions les 14 derniers jours : pic à 113 le 6 juin, puis chute à 2-7/jour cette semaine
+- 0 conversion à ce jour
+- Google Ads : 67 clics, 22,62€ dépensés, CTR 1,19%
+- TikTok : 99% taux de rebond, durée moyenne 1,8 secondes
+
+Génère un rapport analytics complet avec :
+1. Bilan de la semaine (ce qui va, ce qui ne va pas)
+2. Analyse des sources de trafic
+3. Diagnostic du problème TikTok
+4. 3 actions prioritaires cette semaine
+5. Objectif pour la semaine prochaine
+
+Sois direct, concis et orienté résultats. Réponds en français.`,
+
+  seo: `Tu es expert SEO pour SvelteShape (getsvelteshape.fr), boutique shapewear premium française.
+
+Contexte :
+- Produit : body sculptant invisible 34,99€, 3 coloris, S à 4XL
+- Articles existants : guide choisir body gainant, body sous robe soirée, body vs gaine amincissante
+- Concurrents bien positionnés : Elya Shapewear, Passion Corset
+- Trafic SEO actuel : 64 sessions/semaine avec 38% de rebond (très bon)
+
+Génère :
+1. 3 idées d'articles SEO à fort potentiel (titre + angle + mots-clés cibles)
+2. 5 mots-clés longue traîne à cibler en priorité
+3. 2 optimisations on-page à faire sur les fiches produit
+4. Plan de contenu pour le mois prochain
+
+Réponds en français, sois précis et actionnable.`,
+
+  tiktok: `Tu es expert content creator TikTok pour SvelteShape, body sculptant invisible premium français à 34,99€.
+
+Contexte :
+- 406 vues TikTok la semaine dernière mais 99% de rebond sur le site
+- Problème : lien bio pointe vers la homepage au lieu de la fiche produit
+- Cible : femmes 25-45 ans, françaises
+- Avantages produit : invisible sous les vêtements, S à 4XL, 3 coloris (marron tendance 2025), 34,99€, Klarna 3x
+
+Génère 3 scripts TikTok complets et différents :
+- Script 1 : Hook choc "avant/après" (30 secondes)
+- Script 2 : POV / storytelling émotionnel (45 secondes)
+- Script 3 : Tendance coloris marron 2025 (20 secondes)
+
+Pour chaque script : hook (3 premières secondes), texte complet, texte à l'écran, son recommandé, CTA final.
+Réponds en français, style naturel TikTok.`,
+
+  concurrents: `Tu es analyste concurrentiel pour SvelteShape (getsvelteshape.fr).
+
+Contexte SvelteShape :
+- Body sculptant 34,99€, Noir/Beige/Marron, S-4XL
+- Thème Dawn premium, Klarna 3x, livraison offerte, garantie 30j
+- Blog SEO lancé, 3 articles publiés
+
+Concurrents identifiés :
+- Elya Shapewear (elyashapewear.fr) : 44,99-49,99€, fabriqué Portugal, blog SEO fort, Klarna, 6 produits
+- Passion Corset (passion-corset.com) : 49,90€, 1 produit, livraison offerte visible, avis vérifiés
+
+Génère une analyse concurrentielle :
+1. Nos 5 avantages concurrentiels clés à exploiter
+2. 3 menaces immédiates à surveiller
+3. 2 opportunités de différenciation non exploitées
+4. Actions marketing à lancer cette semaine pour prendre des parts de marché
+5. Recommandation de positionnement prix et offre
+
+Réponds en français, sois stratégique et actionnable.`,
+
+  cro: `Tu es expert CRO (Conversion Rate Optimization) pour SvelteShape (getsvelteshape.fr).
+
+Données actuelles :
+- 269 sessions cette semaine, 0 conversion
+- Taux de rebond TikTok : 99% (durée 1,8 sec)
+- Taux de rebond Google Ads : 73%
+- Taux de rebond SEO : 38% (bon)
+- Tunnel : visiteur → fiche produit → panier → checkout → achat
+- Produit : 34,99€, paiement 3x Klarna disponible
+
+Éléments en place : sticky ATC, Klarna affiché, offre flash -30%, garantie 30j, avis fictifs, description riche
+
+Ce qui manque : vrais avis clients (Judge.me non installé), numéro de téléphone, live chat réel
+
+Génère :
+1. Diagnostic complet du tunnel de conversion
+2. Les 3 plus gros freins à l'achat identifiés
+3. 5 micro-optimisations à faire cette semaine (quick wins)
+4. Plan A/B test à lancer sur la fiche produit
+5. Estimation du taux de conversion cible réaliste
+
+Réponds en français, base-toi sur les meilleures pratiques e-commerce 2025.`
+};
+
+async function callClaude(prompt) {
+  const key = window.__ANTHROPIC_KEY;
+  if (!key) return "⚠️ Aucune clé API configurée. Recharge la page et saisis ta clé Anthropic.";
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": key,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) return `Erreur API : ${data.error.message}`;
+    return data.content?.[0]?.text || "Erreur de réponse.";
+  } catch (e) {
+    return `Erreur réseau : ${e.message}`;
+  }
+}
+
+function Spinner() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8, color: MOCHA, fontSize: 14 }}>
+      <div style={{
+        width: 16, height: 16, border: `2px solid ${BEIGE}`,
+        borderTopColor: ESPRESSO, borderRadius: "50%",
+        animation: "spin 0.8s linear infinite"
+      }} />
+      Agent en train d'analyser...
+    </div>
+  );
+}
+
+function AgentCard({ agent, onRun }) {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult]   = useState(null);
+
+  const handleRun = async () => {
+    setLoading(true);
+    setResult(null);
+    const res = await onRun(agent.id);
+    setResult(res);
+    setLoading(false);
+  };
+
+  return (
+    <div style={{
+      background: "white", borderRadius: 12, padding: 20,
+      border: `1px solid ${BEIGE}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+      display: "flex", flexDirection: "column", gap: 12
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <span style={{ fontSize: 24 }}>{agent.icon}</span>
+          <span style={{ fontWeight: 700, color: INK, fontSize: 15 }}>{agent.label}</span>
+        </div>
+        <button
+          onClick={handleRun}
+          disabled={loading}
+          style={{
+            background: loading ? BEIGE : agent.color,
+            color: loading ? MOCHA : "white",
+            border: "none", borderRadius: 999, padding: "8px 18px",
+            fontSize: 13, fontWeight: 600, cursor: loading ? "not-allowed" : "pointer",
+            transition: "all 0.2s"
+          }}
+        >
+          {loading ? "..." : "Lancer"}
+        </button>
+      </div>
+
+      {loading && <Spinner />}
+
+      {result && (
+        <div style={{
+          background: CREAM, borderRadius: 8, padding: 14,
+          fontSize: 13, color: INK, lineHeight: 1.7,
+          borderLeft: `3px solid ${agent.color}`,
+          whiteSpace: "pre-wrap", maxHeight: 320, overflowY: "auto"
+        }}>
+          {result}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function App() {
+  const [activeTab, setActiveTab] = useState("dashboard");
+
+  const weeklyData = [
+    { day: "12 juin", sessions: 22  },
+    { day: "13 juin", sessions: 44  },
+    { day: "14 juin", sessions: 108 },
+    { day: "15 juin", sessions: 58  },
+    { day: "16 juin", sessions: 22  },
+    { day: "17 juin", sessions: 7   },
+    { day: "18 juin", sessions: 2   },
+  ];
+  const maxSessions = Math.max(...weeklyData.map(d => d.sessions));
+
+  const sourceData = [
+    { source: "Direct", sessions: 184, color: ESPRESSO   },
+    { source: "Search", sessions: 64,  color: GOLD       },
+    { source: "Social", sessions: 21,  color: "#E88C30"  },
+  ];
+  const totalSessions = sourceData.reduce((a, b) => a + b.sessions, 0);
+
+  const runAgent = useCallback(async (agentId) => callClaude(agentPrompts[agentId]), []);
+
+  const kpis = [
+    { label: "Sessions (7j)",  value: "269",     trend: "↓",  trendColor: "#E53E3E", sub: "vs 585 semaine passée"    },
+    { label: "TikTok",         value: "21",      trend: "↓↓", trendColor: "#E53E3E", sub: "vs 406 semaine passée"    },
+    { label: "Conversions",    value: "0",       trend: "—",  trendColor: MOCHA,     sub: "Objectif : 1ère commande" },
+    { label: "Google Ads",     value: "22,62€",  trend: "→",  trendColor: GOLD,      sub: "67 clics · CTR 1,19%"    },
+  ];
+
+  const todos = [
+    { done: false, priority: "🔴", task: "Changer lien bio TikTok → fiche produit marron"   },
+    { done: false, priority: "🔴", task: "Installer Judge.me (vrais avis clients)"           },
+    { done: false, priority: "🟡", task: "Publier 3 vidéos TikTok cette semaine"             },
+    { done: false, priority: "🟡", task: "Configurer Zoho Mail (recevoir réponses)"          },
+    { done: false, priority: "🟡", task: "Ajouter numéro de téléphone footer"                },
+    { done: true,  priority: "✅", task: "Migration Copyfy → Dawn"                           },
+    { done: true,  priority: "✅", task: "Klarna 3x affiché"                                 },
+    { done: true,  priority: "✅", task: "Blog SEO + 3 articles publiés"                     },
+    { done: true,  priority: "✅", task: "Email pro contact@getsvelteshape.fr"               },
+    { done: true,  priority: "✅", task: "Sticky ATC mobile"                                 },
+  ];
+
+  const tabs = [
+    { id: "dashboard", label: "📊 Dashboard"  },
+    { id: "agents",    label: "🤖 Agents IA"  },
+    { id: "todo",      label: "✅ Actions"     },
+  ];
+
+  return (
+    <div style={{ fontFamily: "'Jost', 'Inter', sans-serif", background: BEIGE, minHeight: "100vh", color: INK }}>
+      <style>{`
+        @keyframes spin    { to { transform: rotate(360deg); } }
+        @keyframes fadeIn  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar       { width: 6px; }
+        ::-webkit-scrollbar-track { background: ${BEIGE}; }
+        ::-webkit-scrollbar-thumb { background: ${MOCHA}; border-radius: 3px; }
+      `}</style>
+
+      {/* Header */}
+      <div style={{
+        background: ESPRESSO_DARK, padding: "16px 24px",
+        display: "flex", alignItems: "center", justifyContent: "space-between"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{
+            background: GOLD, borderRadius: 8, width: 36, height: 36,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 18, fontWeight: 800, color: ESPRESSO_DARK
+          }}>S</div>
+          <div>
+            <div style={{ color: CREAM, fontWeight: 700, fontSize: 16, letterSpacing: "0.02em" }}>
+              Svelte<span style={{ color: GOLD }}>Shape</span>
+            </div>
+            <div style={{ color: "rgba(250,248,245,0.5)", fontSize: 11 }}>Centre de Commande IA</div>
+          </div>
+        </div>
+        <div style={{
+          background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)",
+          borderRadius: 999, padding: "4px 12px", fontSize: 12, color: GOLD
+        }}>
+          🟢 Boutique en ligne
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div style={{
+        background: "white", borderBottom: `1px solid ${BEIGE}`,
+        display: "flex", gap: 0, padding: "0 24px"
+      }}>
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            style={{
+              background: "none", border: "none",
+              borderBottom: activeTab === tab.id ? `2px solid ${ESPRESSO}` : "2px solid transparent",
+              padding: "14px 20px", fontSize: 14, fontWeight: 600,
+              color: activeTab === tab.id ? ESPRESSO : MOCHA,
+              cursor: "pointer", transition: "all 0.2s"
+            }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ padding: 24, maxWidth: 900, margin: "0 auto" }}>
+
+        {/* DASHBOARD TAB */}
+        {activeTab === "dashboard" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 20, animation: "fadeIn 0.3s ease" }}>
+
+            {/* KPIs */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+              {kpis.map((kpi, i) => (
+                <div key={i} style={{
+                  background: "white", borderRadius: 12, padding: 16,
+                  border: `1px solid ${BEIGE}`, boxShadow: "0 1px 4px rgba(0,0,0,0.04)"
+                }}>
+                  <div style={{ fontSize: 12, color: MOCHA, marginBottom: 6, fontWeight: 500 }}>{kpi.label}</div>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                    <span style={{ fontSize: 28, fontWeight: 800, color: INK }}>{kpi.value}</span>
+                    <span style={{ fontSize: 16, color: kpi.trendColor, fontWeight: 700 }}>{kpi.trend}</span>
+                  </div>
+                  <div style={{ fontSize: 11, color: MOCHA, marginTop: 4 }}>{kpi.sub}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Sessions chart */}
+            <div style={{ background: "white", borderRadius: 12, padding: 20, border: `1px solid ${BEIGE}` }}>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, color: INK }}>
+                📈 Sessions — 7 derniers jours
+              </div>
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 8, height: 120 }}>
+                {weeklyData.map((d, i) => (
+                  <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+                    <div style={{ fontSize: 10, color: MOCHA, fontWeight: 600 }}>{d.sessions}</div>
+                    <div style={{
+                      width: "100%", borderRadius: "4px 4px 0 0",
+                      height: `${(d.sessions / maxSessions) * 90}px`,
+                      background: d.sessions === maxSessions
+                        ? `linear-gradient(to top, ${ESPRESSO}, ${GOLD})`
+                        : `linear-gradient(to top, ${ESPRESSO}88, ${ESPRESSO}44)`,
+                      transition: "height 0.5s ease", minHeight: 4
+                    }} />
+                    <div style={{ fontSize: 9, color: MOCHA, textAlign: "center", lineHeight: 1.2 }}>
+                      {d.day.replace(" juin", "")}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Traffic sources */}
+            <div style={{ background: "white", borderRadius: 12, padding: 20, border: `1px solid ${BEIGE}` }}>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, color: INK }}>
+                🌐 Sources de trafic cette semaine
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {sourceData.map((s, i) => (
+                  <div key={i}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                      <span style={{ fontSize: 13, fontWeight: 600, color: INK }}>{s.source}</span>
+                      <span style={{ fontSize: 13, color: MOCHA }}>
+                        {s.sessions} sessions ({Math.round(s.sessions / totalSessions * 100)}%)
+                      </span>
+                    </div>
+                    <div style={{ background: BEIGE, borderRadius: 999, height: 8, overflow: "hidden" }}>
+                      <div style={{
+                        background: s.color, height: "100%", borderRadius: 999,
+                        width: `${s.sessions / totalSessions * 100}%`,
+                        transition: "width 0.8s ease"
+                      }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* TikTok alert */}
+            <div style={{ background: "#FFF5F5", borderRadius: 12, padding: 16, border: "1px solid #FED7D7" }}>
+              <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                <span style={{ fontSize: 24 }}>⚠️</span>
+                <div>
+                  <div style={{ fontWeight: 700, color: "#C53030", fontSize: 14, marginBottom: 4 }}>
+                    TikTok : chute de 95% du trafic
+                  </div>
+                  <div style={{ fontSize: 13, color: "#742A2A", lineHeight: 1.6 }}>
+                    La semaine passée : 406 sessions. Cette semaine : 21 sessions.{" "}
+                    <strong>Action immédiate :</strong> Publier une nouvelle vidéo + changer le lien bio
+                    vers{" "}
+                    <code style={{ background: "#FED7D7", padding: "1px 6px", borderRadius: 4, fontSize: 12 }}>
+                      getsvelteshape.fr/products/body-sculptant-marron...
+                    </code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* AGENTS TAB */}
+        {activeTab === "agents" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, animation: "fadeIn 0.3s ease" }}>
+            <div style={{
+              background: `linear-gradient(135deg, ${ESPRESSO_DARK}, ${ESPRESSO})`,
+              borderRadius: 12, padding: 20, color: CREAM
+            }}>
+              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 6 }}>🤖 Agents IA SvelteShape</div>
+              <div style={{ fontSize: 13, opacity: 0.8, lineHeight: 1.6 }}>
+                Chaque agent analyse les données réelles de ta boutique et génère des recommandations concrètes.
+                Clique sur "Lancer" pour activer un agent.
+              </div>
+            </div>
+            {agents.map(agent => (
+              <AgentCard key={agent.id} agent={agent} onRun={runAgent} />
+            ))}
+          </div>
+        )}
+
+        {/* TODO TAB */}
+        {activeTab === "todo" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, animation: "fadeIn 0.3s ease" }}>
+
+            <div style={{ background: "white", borderRadius: 12, padding: 20, border: `1px solid ${BEIGE}` }}>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, color: INK }}>🎯 Actions prioritaires</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {todos.filter(t => !t.done).map((todo, i) => (
+                  <div key={i} style={{
+                    display: "flex", alignItems: "center", gap: 12,
+                    padding: "12px 16px", background: CREAM,
+                    borderRadius: 8, border: `1px solid ${BEIGE}`
+                  }}>
+                    <span style={{ fontSize: 16 }}>{todo.priority}</span>
+                    <span style={{ fontSize: 14, color: INK, fontWeight: 500 }}>{todo.task}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: "white", borderRadius: 12, padding: 20, border: `1px solid ${BEIGE}` }}>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, color: "#2D6A4F" }}>✅ Déjà accompli</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {todos.filter(t => t.done).map((todo, i) => (
+                  <div key={i} style={{
+                    display: "flex", alignItems: "center", gap: 12,
+                    padding: "12px 16px", background: "#F0FFF4",
+                    borderRadius: 8, border: "1px solid #C6F6D5"
+                  }}>
+                    <span style={{ fontSize: 16 }}>✅</span>
+                    <span style={{ fontSize: 14, color: "#276749", textDecoration: "line-through", opacity: 0.7 }}>
+                      {todo.task}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Store score */}
+            <div style={{
+              background: `linear-gradient(135deg, ${ESPRESSO_DARK}, ${ESPRESSO})`,
+              borderRadius: 12, padding: 20, color: CREAM
+            }}>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 12 }}>🏆 Score boutique SvelteShape</div>
+              {[
+                { label: "Design & Branding",   score: 95 },
+                { label: "SEO Technique",        score: 80 },
+                { label: "Conversion (CRO)",     score: 65 },
+                { label: "Trafic",               score: 45 },
+                { label: "Social Proof",         score: 30 },
+              ].map((item, i) => (
+                <div key={i} style={{ marginBottom: 10 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4, fontSize: 12 }}>
+                    <span>{item.label}</span>
+                    <span style={{ color: GOLD, fontWeight: 700 }}>{item.score}%</span>
+                  </div>
+                  <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 999, height: 6 }}>
+                    <div style={{
+                      background: `linear-gradient(to right, ${GOLD}, #E8A84C)`,
+                      height: "100%", borderRadius: 999,
+                      width: `${item.score}%`, transition: "width 1s ease"
+                    }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+</body>
+</html>
