@@ -13,7 +13,7 @@
     body { font-family: 'Jost', 'Inter', sans-serif; }
     #root { min-height: 100vh; }
 
-    /* API key modal */
+    /* Modale clé API */
     #api-modal {
       position: fixed; inset: 0; z-index: 9999;
       background: rgba(28,20,14,0.85); backdrop-filter: blur(6px);
@@ -47,7 +47,7 @@
 </head>
 <body>
 
-<!-- API key gate (vanilla JS so it works before React loads) -->
+<!-- Saisie de la clé API (vanilla JS, s'exécute avant le chargement de React) -->
 <div id="api-modal">
   <div class="box">
     <h2>🔑 Clé API Anthropic</h2>
@@ -392,11 +392,11 @@ function App() {
 
       <div style={{ padding: 24, maxWidth: 900, margin: "0 auto" }}>
 
-        {/* DASHBOARD TAB */}
+        {/* ONGLET DASHBOARD */}
         {activeTab === "dashboard" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 20, animation: "fadeIn 0.3s ease" }}>
 
-            {/* KPIs */}
+            {/* Indicateurs clés */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
               {kpis.map((kpi, i) => (
                 <div key={i} style={{
@@ -413,7 +413,7 @@ function App() {
               ))}
             </div>
 
-            {/* Sessions chart */}
+            {/* Graphique sessions */}
             <div style={{ background: "white", borderRadius: 12, padding: 20, border: `1px solid ${BEIGE}` }}>
               <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, color: INK }}>
                 📈 Sessions — 7 derniers jours
@@ -438,7 +438,7 @@ function App() {
               </div>
             </div>
 
-            {/* Traffic sources */}
+            {/* Sources de trafic */}
             <div style={{ background: "white", borderRadius: 12, padding: 20, border: `1px solid ${BEIGE}` }}>
               <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, color: INK }}>
                 🌐 Sources de trafic cette semaine
@@ -464,7 +464,7 @@ function App() {
               </div>
             </div>
 
-            {/* TikTok alert */}
+            {/* Alerte TikTok */}
             <div style={{ background: "#FFF5F5", borderRadius: 12, padding: 16, border: "1px solid #FED7D7" }}>
               <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                 <span style={{ fontSize: 24 }}>⚠️</span>
@@ -486,7 +486,7 @@ function App() {
           </div>
         )}
 
-        {/* AGENTS TAB */}
+        {/* ONGLET AGENTS */}
         {activeTab === "agents" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 16, animation: "fadeIn 0.3s ease" }}>
             <div style={{
@@ -505,7 +505,7 @@ function App() {
           </div>
         )}
 
-        {/* TODO TAB */}
+        {/* ONGLET ACTIONS */}
         {activeTab === "todo" && (
           <div style={{ display: "flex", flexDirection: "column", gap: 16, animation: "fadeIn 0.3s ease" }}>
 
@@ -543,7 +543,7 @@ function App() {
               </div>
             </div>
 
-            {/* Store score */}
+            {/* Score boutique */}
             <div style={{
               background: `linear-gradient(135deg, ${ESPRESSO_DARK}, ${ESPRESSO})`,
               borderRadius: 12, padding: 20, color: CREAM
