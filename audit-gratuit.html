@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Audit Marketing Gratuit — AgenceBoostIA</title>
+<meta name="description" content="Obtenez un audit marketing gratuit de votre boutique Shopify. On analyse vos paniers abandonnés, votre présence sociale et votre stratégie en 24h." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://agenceboostia.fr/audit-gratuit" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0A0A0F;--bg2:#111118;--bg3:#16161F;--border:rgba(255,255,255,0.08);--primary:#6C63FF;--pl:#8B85FF;--a2:#A78BFA;--green:#10B981;--red:#EF4444;--text:#F0F0FF;--muted:#9090A8;--r:16px;--sh:0 8px 40px rgba(108,99,255,0.18)}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.nl{font-size:1.4rem;font-weight:800}.nl span{color:var(--primary)}
+nav ul{display:flex;align-items:center;gap:2rem;list-style:none}
+nav ul a{color:var(--muted);font-size:.9rem;transition:color .2s}
+nav ul a:hover{color:var(--text)}
+.nc{background:var(--primary);color:#fff!important;padding:.5rem 1.2rem;border-radius:8px;font-weight:600!important;font-size:.85rem!important}
+.nc:hover{background:var(--pl)!important}
+.hb{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hb span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mm{display:none;position:fixed;top:65px;left:0;right:0;z-index:99;background:#0A0A0F;border-bottom:1px solid var(--border);padding:1.5rem 2rem;flex-direction:column;gap:1.2rem}
+.mm.open{display:flex}
+.mm a{color:var(--text);font-size:1.1rem;font-weight:600;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.mm a:last-child{border-bottom:none;margin-top:.5rem;background:var(--primary);color:#fff!important;padding:.7rem 1.5rem;border-radius:8px;text-align:center;border:none}
+@media(max-width:768px){nav ul{display:none}.hb{display:flex}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(108,99,255,0.15) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);padding:.4rem 1rem;border-radius:50px;font-size:.82rem;color:#10B981;margin-bottom:1.5rem;font-weight:600}
+.badge::before{content:"✓"}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1.5rem}
+.gr{background:linear-gradient(135deg,var(--pl) 0%,var(--a2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);max-width:600px;margin:0 auto 2.5rem}
+.hp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(108,99,255,0.1);animation:pu 4s ease-in-out infinite;pointer-events:none;z-index:-1}
+.hp:nth-child(1){width:600px;height:600px}
+.hp:nth-child(2){width:800px;height:800px;animation-delay:1.5s}
+.hp:nth-child(3){width:1000px;height:1000px;animation-delay:3s}
+@keyframes pu{0%,100%{opacity:.3}50%{opacity:.08}}
+
+/* WHAT WE AUDIT */
+.wa{padding:6rem 2rem;background:var(--bg2)}
+.st{text-align:center;margin-bottom:3.5rem}
+.st h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.5px;margin-bottom:.75rem}
+.st p{color:var(--muted);max-width:520px;margin:0 auto;font-size:1.05rem}
+.tag{display:inline-block;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.25);color:var(--a2);font-size:.78rem;padding:.3rem .8rem;border-radius:50px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1rem}
+.wagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto}
+.wac{background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);padding:2rem;transition:border-color .3s,transform .3s}
+.wac:hover{border-color:rgba(108,99,255,0.35);transform:translateY(-6px);box-shadow:var(--sh)}
+.wi{font-size:2rem;margin-bottom:1rem}
+.wac h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.wac p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.wac ul{list-style:none;margin-top:1rem}
+.wac ul li{font-size:.85rem;color:var(--muted);padding:.3rem 0;display:flex;align-items:flex-start;gap:.5rem}
+.wac ul li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;margin-top:.1rem}
+
+/* PROCESS */
+.proc{padding:6rem 2rem}
+.procgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:900px;margin:0 auto;position:relative}
+.procgrid::before{content:'';position:absolute;top:32px;left:16%;right:16%;height:1px;background:linear-gradient(90deg,transparent,rgba(108,99,255,0.3),transparent);pointer-events:none}
+@media(max-width:640px){.procgrid::before{display:none}}
+.procc{text-align:center;padding:1.5rem 1rem}
+.procn{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--a2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;margin:0 auto 1.2rem;box-shadow:0 4px 20px rgba(108,99,255,0.35)}
+.procc h3{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.procc p{color:var(--muted);font-size:.88rem}
+
+/* FORM */
+.fs{padding:6rem 2rem;background:var(--bg2)}
+.fbox{max-width:680px;margin:0 auto;background:linear-gradient(135deg,rgba(108,99,255,0.08) 0%,rgba(167,139,250,0.05) 100%);border:1px solid rgba(108,99,255,0.2);border-radius:24px;padding:3.5rem 3rem}
+@media(max-width:600px){.fbox{padding:2.5rem 1.5rem}}
+.fbox h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-.5px;margin-bottom:.75rem}
+.fbox>p{color:var(--muted);font-size:1rem;margin-bottom:2.5rem}
+.fg{display:flex;flex-direction:column;gap:1.2rem}
+.fl{display:flex;flex-direction:column;gap:.4rem}
+.fl label{font-size:.88rem;font-weight:600;color:var(--text)}
+.fl input,.fl select,.fl textarea{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:.8rem 1.1rem;color:var(--text);font-family:inherit;font-size:.95rem;width:100%;transition:border-color .2s,box-shadow .2s;outline:none}
+.fl input:focus,.fl select:focus,.fl textarea:focus{border-color:rgba(108,99,255,0.5);box-shadow:0 0 0 3px rgba(108,99,255,0.1)}
+.fl select option{background:var(--bg3)}
+.fl textarea{resize:vertical;min-height:100px}
+.fl input::placeholder,.fl textarea::placeholder{color:var(--muted)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:500px){.frow{grid-template-columns:1fr}}
+.fsub{width:100%;padding:1rem;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;border:none;background:linear-gradient(135deg,var(--primary),var(--a2));color:#fff;transition:all .2s;box-shadow:0 4px 20px rgba(108,99,255,0.4);margin-top:.5rem}
+.fsub:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,0.55)}
+.fmention{font-size:.78rem;color:var(--muted);text-align:center;margin-top:1rem}
+.fmention::before{content:"🔒 "}
+.trust{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:2rem}
+.tc{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:.4rem .9rem;border-radius:50px;border:1px solid var(--border)}
+.tc::before{content:"✓";color:var(--green);font-weight:700}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:3rem 1rem}
+.success .si{font-size:4rem;margin-bottom:1.5rem}
+.success h3{font-size:1.6rem;font-weight:800;margin-bottom:.75rem}
+.success p{color:var(--muted);max-width:400px;margin:0 auto 2rem}
+
+/* WHY FREE */
+.wf{padding:6rem 2rem}
+.wfgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:960px;margin:0 auto;align-items:center}
+@media(max-width:680px){.wfgrid{grid-template-columns:1fr;gap:2rem}}
+.wfl h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-.5px;margin-bottom:1.2rem}
+.wfl p{color:var(--muted);font-size:1rem;line-height:1.7;margin-bottom:1.5rem}
+.wfr{display:flex;flex-direction:column;gap:1rem}
+.wfi{background:var(--bg2);border-radius:14px;border:1px solid var(--border);padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
+.wfio{font-size:1.5rem;flex-shrink:0}
+.wfi h4{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.wfi p{color:var(--muted);font-size:.85rem}
+
+/* FAQ */
+.fq{padding:6rem 2rem;background:var(--bg2)}
+.faqlist{max-width:720px;margin:0 auto}
+.fi{border:1px solid var(--border);border-radius:12px;margin-bottom:.75rem;overflow:hidden;transition:border-color .2s}
+.fi.open{border-color:rgba(108,99,255,0.3)}
+.fb{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;background:none;border:none;color:var(--text);font-size:.97rem;font-weight:600;cursor:pointer;text-align:left;gap:1rem}
+.fb:hover{background:rgba(255,255,255,0.02)}
+.fic{flex-shrink:0;width:24px;height:24px;background:rgba(108,99,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:transform .3s,background .3s}
+.fi.open .fic{transform:rotate(45deg);background:rgba(108,99,255,0.3)}
+.fa{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.5rem}
+.fai{padding-bottom:1.2rem;color:var(--muted);font-size:.92rem;line-height:1.7}
+.fi.open .fa{max-height:300px}
+
+/* CTA FINAL */
+.ca{padding:6rem 2rem;text-align:center}
+.cbox{max-width:680px;margin:0 auto;background:linear-gradient(135deg,rgba(108,99,255,0.12) 0%,rgba(167,139,250,0.08) 100%);border:1px solid rgba(108,99,255,0.25);border-radius:24px;padding:4rem 3rem}
+.cbox h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.5px;margin-bottom:1rem}
+.cbox>p{color:var(--muted);margin-bottom:2rem;font-size:1.05rem}
+.bp{background:var(--primary);color:#fff;padding:.9rem 2.2rem;border-radius:12px;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(108,99,255,0.4);display:inline-block}
+.bp:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,0.5)}
+
+footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.fp{color:var(--muted);font-size:.85rem;margin-bottom:.75rem}
+.fl2{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.fl2 a{color:var(--muted);font-size:.85rem;transition:color .2s}
+.fl2 a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nl">Agence<span>BoostIA</span></a>
+  <ul>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#tarifs">Tarifs</a></li>
+    <li><a href="/audit-gratuit" class="nc">Audit gratuit</a></li>
+  </ul>
+  <button class="hb" id="hb" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mm" id="mm">
+  <a href="/#services">Services</a>
+  <a href="/#tarifs">Tarifs</a>
+  <a href="/audit-gratuit" class="nc">Audit gratuit</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hp"></div><div class="hp"></div><div class="hp"></div>
+  <div>
+    <div class="badge">100% Gratuit — Sans engagement</div>
+    <h1>Découvrez ce que<br>votre boutique<br><span class="gr">vous coûte chaque mois</span></h1>
+    <p>On analyse votre boutique Shopify en profondeur et on vous livre un rapport personnalisé avec 3 actions concrètes pour augmenter votre CA — gratuitement, en 24h.</p>
+    <a href="#formulaire" class="bp">Demander mon audit gratuit →</a>
+  </div>
+</section>
+
+<!-- CE QU'ON ANALYSE -->
+<section class="wa">
+  <div class="st">
+    <div class="tag">Ce qu'on audite</div>
+    <h2>Un regard expert sur<br>4 leviers clés</h2>
+    <p>On ne survole pas — on creuse. Chaque audit est fait à la main par Kevin, pas par un robot.</p>
+  </div>
+  <div class="wagrid">
+    <div class="wac">
+      <div class="wi">🛒</div>
+      <h3>Paniers abandonnés</h3>
+      <p>La plupart des boutiques perdent 15-25% de CA faute de relances automatisées.</p>
+      <ul>
+        <li>Taux d'abandon actuel estimé</li>
+        <li>Séquences email manquantes</li>
+        <li>Montant mensuel non récupéré</li>
+      </ul>
+    </div>
+    <div class="wac">
+      <div class="wi">📱</div>
+      <h3>Réseaux sociaux</h3>
+      <p>On regarde votre présence sur Instagram et évalue votre fréquence de publication.</p>
+      <ul>
+        <li>Analyse de votre compte Instagram</li>
+        <li>Fréquence et qualité des posts</li>
+        <li>Opportunités de contenus IA</li>
+      </ul>
+    </div>
+    <div class="wac">
+      <div class="wi">⚡</div>
+      <h3>Automatisation</h3>
+      <p>Quelles tâches répétitives vous font perdre du temps — et comment les éliminer.</p>
+      <ul>
+        <li>Emails post-achat en place</li>
+        <li>Séquence de bienvenue client</li>
+        <li>Automatisations marketing actives</li>
+      </ul>
+    </div>
+    <div class="wac">
+      <div class="wi">📊</div>
+      <h3>Stratégie digitale</h3>
+      <p>Vue d'ensemble sur ce qui freine votre croissance et les priorités à traiter en premier.</p>
+      <ul>
+        <li>Positionnement vs concurrents</li>
+        <li>Quick wins immédiats identifiés</li>
+        <li>Roadmap 30-60-90 jours</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="proc">
+  <div class="st">
+    <div class="tag">Comment ça marche</div>
+    <h2>Simple. Rapide. Actionnable.</h2>
+    <p>De la demande au rapport en moins de 24h.</p>
+  </div>
+  <div class="procgrid">
+    <div class="procc">
+      <div class="procn">1</div>
+      <h3>Vous remplissez le formulaire</h3>
+      <p>2 minutes — l'URL de votre boutique et votre email suffisent.</p>
+    </div>
+    <div class="procc">
+      <div class="procn">2</div>
+      <h3>On analyse votre boutique</h3>
+      <p>Kevin passe votre site au crible sur les 4 leviers clés.</p>
+    </div>
+    <div class="procc">
+      <div class="procn">3</div>
+      <h3>Vous recevez votre rapport</h3>
+      <p>Un PDF personnalisé avec les chiffres et 3 actions prioritaires — en 24h.</p>
+    </div>
+    <div class="procc">
+      <div class="procn">4</div>
+      <h3>Appel de 15 min (optionnel)</h3>
+      <p>Si vous voulez qu'on détaille les résultats ensemble — sans pression.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="fs" id="formulaire">
+  <div class="fbox">
+    <div id="form-container">
+      <h2>Demander mon audit<br><span class="gr">100% gratuit</span></h2>
+      <p>Remplissez en 2 minutes. On revient vers vous sous 24h avec votre rapport personnalisé.</p>
+      <form class="fg" id="audit-form" action="https://formspree.io/f/xpwzgvbq" method="POST" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="_subject" value="🎯 Nouvelle demande d'audit gratuit — AgenceBoostIA" />
+        <input type="hidden" name="_next" value="https://agenceboostia.fr/audit-gratuit?merci=1" />
+        <div class="frow">
+          <div class="fl">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Marie" required />
+          </div>
+          <div class="fl">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="marie@maboutique.fr" required />
+          </div>
+        </div>
+        <div class="fl">
+          <label for="boutique">URL de votre boutique *</label>
+          <input type="url" id="boutique" name="boutique" placeholder="https://maboutique.fr" required />
+        </div>
+        <div class="fl">
+          <label for="plateforme">Plateforme e-commerce</label>
+          <select id="plateforme" name="plateforme">
+            <option value="">— Sélectionner —</option>
+            <option value="shopify">Shopify</option>
+            <option value="woocommerce">WooCommerce</option>
+            <option value="prestashop">PrestaShop</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="fl">
+          <label for="probleme">Votre plus gros problème en ce moment ? (optionnel)</label>
+          <textarea id="probleme" name="probleme" placeholder="Ex : je ne sais pas quoi poster sur Instagram, mes ventes stagnent..."></textarea>
+        </div>
+        <button type="submit" class="fsub">Demander mon audit gratuit →</button>
+        <p class="fmention">Informations 100% confidentielles. On ne revend pas vos données.</p>
+      </form>
+      <div class="trust">
+        <span class="tc">Réponse sous 24h</span>
+        <span class="tc">Sans engagement</span>
+        <span class="tc">100% gratuit</span>
+      </div>
+    </div>
+    <div class="success" id="success">
+      <div class="si">🎉</div>
+      <h3>Demande reçue !</h3>
+      <p>On analyse votre boutique et on revient vers vous sous 24h avec votre rapport personnalisé.</p>
+      <a href="/" class="bp">Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI GRATUIT -->
+<section class="wf">
+  <div class="wfgrid">
+    <div class="wfl">
+      <div class="tag">Pourquoi gratuit ?</div>
+      <h2>Parce qu'on préfère<br>vous prouver notre valeur<br>avant de vous vendre quoi que ce soit.</h2>
+      <p>On ne croit pas aux pitchs. On croit aux résultats. L'audit gratuit, c'est notre façon de montrer ce qu'on sait faire — concrètement, sur votre boutique, pas sur un exemple générique.</p>
+      <p>Si notre analyse vous aide — tant mieux. Si en plus vous souhaitez qu'on implémente les solutions pour vous, on en parlera.</p>
+    </div>
+    <div class="wfr">
+      <div class="wfi">
+        <div class="wfio">🎯</div>
+        <div>
+          <h4>Rapport 100% personnalisé</h4>
+          <p>Chaque audit est fait à la main sur votre boutique spécifique. Pas un template générique envoyé en masse.</p>
+        </div>
+      </div>
+      <div class="wfi">
+        <div class="wfio">⏱️</div>
+        <div>
+          <h4>Livré en moins de 24h</h4>
+          <p>Vous demandez le lundi matin, vous avez votre rapport le mardi matin.</p>
+        </div>
+      </div>
+      <div class="wfi">
+        <div class="wfio">🚫</div>
+        <div>
+          <h4>Zéro pression commerciale</h4>
+          <p>Pas de relance agressive. Pas de deadline artificielle. Vous décidez si vous voulez qu'on travaille ensemble.</p>
+        </div>
+      </div>
+      <div class="wfi">
+        <div class="wfio">💡</div>
+        <div>
+          <h4>Actions actionnables immédiatement</h4>
+          <p>Même si vous ne nous contactez plus après l'audit, vous aurez 3 choses concrètes à faire cette semaine.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="fq">
+  <div class="st">
+    <div class="tag">Questions fréquentes</div>
+    <h2>Tout ce que vous<br>voulez savoir</h2>
+  </div>
+  <div class="faqlist">
+    <div class="fi">
+      <button class="fb" onclick="toggle(this)">
+        <span>C'est vraiment gratuit ? Il n'y a pas de frais cachés ?</span>
+        <div class="fic">+</div>
+      </button>
+      <div class="fa"><div class="fai">Oui, 100% gratuit. Pas de carte bancaire demandée, pas d'abonnement caché. On vous livre un rapport complet sans contrepartie. La seule chose qu'on espère, c'est que si notre analyse vous convainc de notre expertise, vous penserez à nous si vous avez besoin d'aide.</div></div>
+    </div>
+    <div class="fi">
+      <button class="fb" onclick="toggle(this)">
+        <span>Est-ce que l'audit fonctionne si je ne suis pas sur Shopify ?</span>
+        <div class="fic">+</div>
+      </button>
+      <div class="fa"><div class="fai">Oui. On travaille principalement avec des boutiques Shopify, mais l'audit est valable pour WooCommerce, PrestaShop et tout autre CMS e-commerce. L'essentiel de l'analyse (paniers abandonnés, réseaux sociaux, automatisation) s'applique quelle que soit la plateforme.</div></div>
+    </div>
+    <div class="fi">
+      <button class="fb" onclick="toggle(this)">
+        <span>Qu'est-ce que je reçois exactement ?</span>
+        <div class="fic">+</div>
+      </button>
+      <div class="fa"><div class="fai">Un rapport PDF personnalisé avec : l'analyse de vos 4 leviers clés, une estimation du CA que vous perdez chaque mois, et 3 actions prioritaires à mettre en place cette semaine. Si vous le souhaitez, on peut aussi en discuter 15 minutes en appel.</div></div>
+    </div>
+    <div class="fi">
+      <button class="fb" onclick="toggle(this)">
+        <span>Est-ce que vous allez me relancer pour me vendre quelque chose ?</span>
+        <div class="fic">+</div>
+      </button>
+      <div class="fa"><div class="fai">On vous enverra votre rapport et potentiellement un seul email de suivi pour savoir si vous avez des questions. C'est tout. On ne fait pas de relances agressives — ce n'est pas notre style et ce n'est pas comme ça qu'on veut travailler.</div></div>
+    </div>
+    <div class="fi">
+      <button class="fb" onclick="toggle(this)">
+        <span>Combien de temps ça prend de mon côté ?</span>
+        <div class="fic">+</div>
+      </button>
+      <div class="fa"><div class="fai">2 minutes pour remplir le formulaire. C'est tout. On se charge du reste. Vous recevez votre rapport sous 24h sans avoir rien à faire de plus.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="ca">
+  <div class="cbox">
+    <h2>Prêt à savoir ce que<br><span class="gr">votre boutique peut vraiment faire ?</span></h2>
+    <p>2 minutes pour remplir le formulaire. 24h pour recevoir votre rapport. 0€.</p>
+    <a href="#formulaire" class="bp">Demander mon audit gratuit →</a>
+  </div>
+</section>
+
+<footer>
+  <p class="fp">© 2026 AgenceBoostIA — <a href="mailto:contact@agenceboostia.fr" style="color:var(--primary)">contact@agenceboostia.fr</a></p>
+  <div class="fl2">
+    <a href="/">Accueil</a>
+    <a href="/#services">Services</a>
+    <a href="/#tarifs">Tarifs</a>
+    <a href="/audit-gratuit">Audit gratuit</a>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+const hb = document.getElementById('hb');
+const mm = document.getElementById('mm');
+hb.addEventListener('click', () => {
+  hb.classList.toggle('open');
+  mm.classList.toggle('open');
+});
+
+// FAQ toggle
+function toggle(btn) {
+  const item = btn.closest('.fi');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.fi.open').forEach(f => f.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Form submit — Formspree
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.fsub');
+  btn.textContent = 'Envoi en cours...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } else {
+      throw new Error('Erreur serveur');
+    }
+  } catch {
+    // Fallback mailto si Formspree échoue
+    const d = Object.fromEntries(new FormData(form));
+    const sub = encodeURIComponent(`Demande d'audit gratuit — ${d.boutique}`);
+    const body = encodeURIComponent(`Prénom : ${d.prenom}\nEmail : ${d.email}\nBoutique : ${d.boutique}\nPlateforme : ${d.plateforme}\nProblème : ${d.probleme}`);
+    window.location.href = `mailto:contact@agenceboostia.fr?subject=${sub}&body=${body}`;
+  }
+
+  // Auto-show success even if tab redirects
+  setTimeout(() => {
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  }, 1200);
+}
+
+// Show success if redirected with ?merci=1
+if (new URLSearchParams(location.search).get('merci') === '1') {
+  document.getElementById('form-container').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+}
+</script>
+</body>
+</html>
