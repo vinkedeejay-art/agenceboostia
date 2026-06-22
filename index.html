@@ -222,6 +222,19 @@ footer>p{color:var(--muted);font-size:.88rem}
 .odp span{font-size:.82rem;font-weight:400;color:var(--muted);display:block;margin-top:.2rem}
 .odn{font-size:.76rem;color:var(--muted);margin-top:.6rem;opacity:.65}
 @media(max-width:600px){.odw{flex-direction:column;gap:1.5rem}.odr{width:100%}}
+/* Tunnel offres */
+.tun{display:flex;align-items:stretch;gap:0;max-width:1260px;margin:0 auto}
+.tun-card{flex:1;min-width:220px}
+.tun-arr{display:flex;align-items:center;justify-content:center;color:rgba(108,99,255,0.45);font-size:1.5rem;padding:0 .4rem;flex-shrink:0;margin-top:3.5rem}
+.step-lbl{font-size:.72rem;color:var(--a2);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem;opacity:.75}
+.step-ico{font-size:1.8rem;margin-bottom:.8rem}
+.step-wd{font-size:.8rem;font-style:italic;color:var(--a2);margin:.4rem 0 1.2rem;opacity:.85}
+.free-b{font-size:2rem;font-weight:900;color:var(--green)}
+.tun-gold{border-color:rgba(201,168,76,0.35)!important}
+.tun-gold .step-lbl,.tun-gold .step-wd{color:#C9A84C}
+.bfg{border:1px solid rgba(201,168,76,0.35);color:#C9A84C;background:transparent}
+.bfg:hover{background:rgba(201,168,76,0.08)!important;border-color:#C9A84C!important}
+@media(max-width:960px){.tun{flex-direction:column}.tun-arr{transform:rotate(90deg);margin:0;padding:.5rem 0;font-size:1.1rem}.tun-card{min-width:0}}
 </style>
 </head>
 <body>
@@ -252,7 +265,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 <ul>
 <li><a href="#sv">Services</a></li>
 <li><a href="#ps">Processus</a></li>
-<li><a href="#pr">Tarifs</a></li>
+<li><a href="#pr">Offres</a></li>
 <li><a href="#fq">FAQ</a></li>
 <li><a href="/audit-gratuit" class="nc">&#10003; Audit gratuit</a></li>
 </ul>
@@ -260,7 +273,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 </nav>
 <div class="mm" id="mm">
 <a href="#sv">Services</a><a href="#ps">Processus</a>
-<a href="#pr">Tarifs</a><a href="#fq">FAQ</a>
+<a href="#pr">Offres</a><a href="#fq">FAQ</a>
 <a href="/audit-gratuit" style="background:var(--primary);color:#fff!important;border-bottom:none;border-radius:8px;text-align:center;padding:.7rem 1.5rem">&#10003; Audit gratuit — 100% gratuit</a>
 </div>
 <section class="hero">
@@ -344,48 +357,51 @@ footer>p{color:var(--muted);font-size:.88rem}
 </div>
 </section>
 <section class="pr" id="pr">
-<div class="st rv"><div class="tag">Tarifs</div><h2>Des offres claires, sans surprise</h2><p>Investissez dans votre croissance avec des forfaits adaptés à chaque étape.</p></div>
-<div class="prg">
-<div class="prc rv">
-<h3>Starter</h3>
-<div class="pp"><sup>&#8364;</sup>490 <span class="pe">/ mois</span></div>
-<p class="pd">Idéal pour démarrer avec l'IA et lancer votre présence digitale.</p>
-<ul class="pfl"><li>Site web 1 page optimisé SEO</li><li>10 posts réseaux sociaux / mois</li><li>Rapport mensuel</li><li>Support email 48h</li></ul>
-<a href="/audit-gratuit" class="bf bfo">Commencer</a>
+<div class="st rv"><div class="tag">Tunnel de croissance</div><h2>Votre parcours, étape par étape</h2><p>Commencez gratuitement. Progressez selon votre budget. Chaque offre est une victoire mesurable.</p></div>
+<div class="tun">
+<div class="prc rv tun-card">
+<div class="step-lbl">Étape 1</div>
+<div class="step-ico">🔍</div>
+<h3>Audit Flash</h3>
+<div class="pp"><span class="free-b">Gratuit</span></div>
+<div class="step-wd">« Je découvre »</div>
+<p class="pd">Rapport personnalisé sur les 3 failles qui vous coûtent le plus cher. Livré en 24h.</p>
+<ul class="pfl"><li>Analyse UX &amp; performance</li><li>3 failles prioritaires identifiées</li><li>Plan d'action chiffré</li><li>Rapport email en 24h</li></ul>
+<a href="/audit-gratuit" class="bf bfp">Démarrer gratuitement &#8594;</a>
 </div>
-<div class="prc ft rv">
-<div class="pb">Plus populaire</div>
-<h3>Growth</h3>
-<div class="pp"><sup>&#8364;</sup>990 <span class="pe">/ mois</span></div>
-<p class="pd">Pour les entreprises qui veulent accélérer leur croissance avec l'IA.</p>
-<ul class="pfl"><li>Site web multi-pages et blog</li><li>Marketing IA complet (SEO + Ads)</li><li>30 contenus IA / mois</li><li>Automatisations Make.com</li><li>Rapport hebdomadaire</li><li>Support prioritaire 24h</li></ul>
-<a href="/audit-gratuit" class="bf bfp">Je veux ce plan</a>
+<div class="tun-arr">&#8594;</div>
+<div class="prc rv tun-card">
+<div class="step-lbl">Étape 2</div>
+<div class="step-ico">&#9889;</div>
+<h3>Pack Étincelle</h3>
+<div class="pp"><sup>&#8364;</sup>147 <span class="pe">paiement unique</span></div>
+<div class="step-wd">« Je corrige »</div>
+<p class="pd">Tes 3 premières victoires concrètes corrigées sur ton site. En 48h. Sans engagement.</p>
+<ul class="pfl"><li>Implémentation des 3 quick wins</li><li>1 page optimisée (home ou produit)</li><li>3 visuels IA prêts à publier</li><li>Mini-guide PDF offert</li></ul>
+<a href="/pack-etincelle" class="bf bfp">Voir le Pack &#8594;</a>
 </div>
-<div class="prc rv">
-<h3>Scale</h3>
-<div class="pp"><sup>&#8364;</sup>1990 <span class="pe">/ mois</span></div>
-<p class="pd">Solution complète pour les entreprises qui veulent dominer leur marché.</p>
-<ul class="pfl"><li>Tout ce qui est dans Growth</li><li>Chatbot IA sur-mesure</li><li>Publicités Meta et Google gérées</li><li>CRM et pipeline automatisés</li><li>Consultant dédié</li><li>SLA moins de 4h</li></ul>
-<a href="/audit-gratuit" class="bf bfo">Nous contacter</a>
+<div class="tun-arr">&#8594;</div>
+<div class="prc ft rv tun-card">
+<div class="pb">&#11088; Le plus choisi</div>
+<div class="step-lbl" style="margin-top:1.4rem">Étape 3</div>
+<div class="step-ico">&#128640;</div>
+<h3>Pack Décollage</h3>
+<div class="pp"><sup>&#8364;</sup>490 <span class="pe">paiement unique</span></div>
+<div class="step-wd">« Je décolle »</div>
+<p class="pd">Refonte complète : site pro + SEO + visuels IA + email automatisé. Livré en 7 jours.</p>
+<ul class="pfl"><li>Site web pro optimisé SEO</li><li>Identité visuelle IA complète</li><li>10 visuels réseaux sociaux</li><li>Séquence email automatisée</li><li>Rapport de performance</li></ul>
+<a href="/audit-gratuit" class="bf bfp">Démarrer le projet &#8594;</a>
 </div>
-</div>
-<div class="od rv">
-<div class="odtag">Vous débutez ?</div>
-<div class="odw">
-<div class="odl">
-<h3>Pack Démarrage — sans abonnement</h3>
-<p>Testez notre approche IA sur un livrable concret, sans engagement mensuel. Idéal pour les indépendants et TPE qui veulent démarrer vite.</p>
-<ul class="odfl">
-<li>Site web 1 page optimisé SEO</li>
-<li>5 visuels IA personnalisés (Midjourney)</li>
-<li>Audit complet de votre présence digitale</li>
-</ul>
-</div>
-<div class="odr">
-<div class="odp"><sup>&#8364;</sup>290<span>paiement unique</span></div>
-<a href="/audit-gratuit" class="bp" style="margin-top:1rem;display:inline-block">Découvrir le Pack &#8594;</a>
-<p class="odn">Livraison en 7 jours &middot; Sans engagement</p>
-</div>
+<div class="tun-arr">&#8594;</div>
+<div class="prc rv tun-card tun-gold">
+<div class="step-lbl">Étape 4</div>
+<div class="step-ico">&#128081;</div>
+<h3>Pack Croissance</h3>
+<div class="pp"><sup>&#8364;</sup>699 <span class="pe">/ mois</span></div>
+<div class="step-wd">« Je domine »</div>
+<p class="pd">Votre marketing IA en pilote automatique. Gestion complète déléguée à notre équipe.</p>
+<ul class="pfl"><li>Tout le Pack Décollage inclus</li><li>30 contenus IA / mois</li><li>SEO &amp; netlinking mensuel</li><li>Publicités Meta &amp; Google gérées</li><li>Rapport hebdomadaire</li><li>Support prioritaire 24h</li></ul>
+<a href="/audit-gratuit" class="bf bfg">Nous contacter &#8594;</a>
 </div>
 </div>
 </section>
@@ -437,7 +453,7 @@ footer>p{color:var(--muted);font-size:.88rem}
   </div>
 </a>
 <div class="flk">
-<a href="#sv">Services</a><a href="#pr">Tarifs</a>
+<a href="#sv">Services</a><a href="#pr">Offres</a>
 <a href="#fq">FAQ</a><a href="/audit-gratuit">Audit gratuit</a>
 <a href="mailto:contact@agenceboostia.fr">Contact</a>
 <a href="/mentions-legales">Mentions légales</a>
