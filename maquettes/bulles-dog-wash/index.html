@@ -35,11 +35,10 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
 /* === DISCLAIMER BANNER === */
-.disclaimer-bar{background:var(--warn-bg);border-bottom:2px solid var(--warn-border);color:var(--warn);text-align:center;padding:.65rem 1.2rem;font-size:.82rem;font-weight:700;position:sticky;top:0;z-index:200;letter-spacing:.01em}
-.disclaimer-bar strong{font-weight:900}
+.disclaimer-bar{background:#FFFBEB;border-bottom:1px solid #E9D5A0;color:#A16207;text-align:center;padding:.35rem 1.2rem;font-size:.76rem;font-weight:500;position:sticky;top:0;z-index:200}
 
 /* === NAV === */
-nav{position:sticky;top:45px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav{position:sticky;top:30px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:10px;font-size:1.4rem;font-weight:900;color:var(--text);white-space:nowrap}
 .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
 .logo span{color:var(--blue)}
@@ -217,7 +216,7 @@ footer ul li.ph-li{font-size:.82rem;color:rgba(245,158,11,0.7);font-style:italic
   .footer-inner{grid-template-columns:1fr 1fr}
   .steps::before{display:none}
   .gallery{grid-template-columns:repeat(2,1fr)}
-  nav{top:43px}
+  nav{top:28px}
 }
 @media(max-width:420px){
   .logo{font-size:1.05rem;gap:7px}
@@ -240,7 +239,7 @@ footer ul li.ph-li{font-size:.82rem;color:rgba(245,158,11,0.7);font-style:italic
 
 <!-- DISCLAIMER STICKY -->
 <div class="disclaimer-bar">
-  ⚠️ <strong>MAQUETTE NON OFFICIELLE</strong> — Démonstration à valider par le propriétaire. Tarifs, services, avis, coordonnées et photos non confirmés.
+  Maquette de démonstration — informations à valider avec le propriétaire avant publication.
 </div>
 
 <!-- Nav -->
@@ -296,9 +295,11 @@ footer ul li.ph-li{font-size:.82rem;color:rgba(245,158,11,0.7);font-style:italic
         <div class="hero-card">
           <span class="dog-emoji">🐕</span>
           <h3>Bulles Dog Wash — Brasles</h3>
-          <div class="ph" style="margin-top:.75rem">
-            <div class="ph-tag">À compléter</div>
-            <div>Chiffres, horaires et informations à confirmer avec le propriétaire avant publication.</div>
+          <p style="font-size:.88rem;color:var(--muted);text-align:center;margin-top:.75rem;line-height:1.6">Une page claire pour présenter votre dog wash, rassurer les clients et centraliser vos informations pratiques.</p>
+          <div style="display:flex;flex-direction:column;gap:.55rem;margin-top:1.2rem">
+            <div style="display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:var(--teal);font-weight:600">✓ Design adapté mobile &amp; desktop</div>
+            <div style="display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:var(--teal);font-weight:600">✓ Services, tarifs et contact au même endroit</div>
+            <div style="display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:var(--teal);font-weight:600">✓ Contenu personnalisé avec vous</div>
           </div>
         </div>
       </div>
@@ -562,6 +563,44 @@ footer ul li.ph-li{font-size:.82rem;color:rgba(245,158,11,0.7);font-style:italic
         <button class="faq-btn" onclick="faqToggle(this)"><span>Comment se passe le paiement ?</span><span class="faq-ico">+</span></button>
         <div class="faq-ans"><div class="faq-ans-inner"><span class="ph-tag">Réponse à confirmer par le propriétaire</span><br><br>Les modes de paiement acceptés (espèces, carte, virement…) et les modalités (avant / après le lavage, en ligne…) sont à confirmer avec le propriétaire.</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFORMATIONS À VALIDER -->
+<section class="sec" id="a-valider" style="background:#F8FAFC;border-top:1px solid var(--border)">
+  <div class="inner" style="max-width:760px">
+    <div class="rv" style="text-align:center;margin-bottom:2.5rem">
+      <div class="sec-tag teal">Étape suivante</div>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.2rem)">Informations à valider ensemble</h2>
+      <p style="color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto">Pour finaliser votre site, nous avons besoin des informations suivantes. Un échange de 30 minutes suffit.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem" class="rv">
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:1.5rem">
+        <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:1rem">Coordonnées</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.65rem">
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Numéro de téléphone</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Adresse exacte à Brasles</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Adresse email de contact</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Lien Facebook officiel</li>
+        </ul>
+      </div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:1.5rem">
+        <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:1rem">Fonctionnement</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.65rem">
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Horaires d'ouverture</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Services exacts proposés</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Grille tarifaire</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)"><span style="width:22px;height:22px;border-radius:50%;background:var(--blue-light);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--blue-dark);flex-shrink:0">?</span>Photos réelles de l'établissement</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rv" style="margin-top:1.5rem;background:linear-gradient(135deg,rgba(59,130,246,0.06),rgba(20,184,166,0.06));border:1.5px solid var(--blue-light);border-radius:14px;padding:1.4rem 1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:.25rem">Prêt à avancer ?</div>
+        <div style="font-size:.85rem;color:var(--muted)">Contactez AgenceBoostIA pour finaliser votre site avec vos vraies informations.</div>
+      </div>
+      <a href="https://www.agenceboostia.fr/audit-gratuit" target="_blank" rel="noopener" style="background:var(--blue);color:#fff;padding:.75rem 1.5rem;border-radius:10px;font-weight:700;font-size:.9rem;white-space:nowrap;display:inline-block">Valider le projet →</a>
     </div>
   </div>
 </section>
