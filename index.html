@@ -199,8 +199,9 @@ footer>p{color:var(--muted);font-size:.88rem}
 .flk{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin:1.2rem 0}
 .flk a{color:var(--muted);font-size:.85rem;transition:color .2s}
 .flk a:hover{color:var(--text)}
-.rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.rv.visible{opacity:1;transform:translateY(0)}
+.rv{opacity:1;transform:none}
+.js-ready .rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.js-ready .rv.visible{opacity:1;transform:translateY(0)}
 @media(max-width:768px){nav ul{display:none}.hb{display:flex}.ch,.cr{grid-template-columns:1fr 90px 90px}.ch span,.cv{font-size:.78rem}.cbox{padding:2.5rem 1.5rem}}
 @media(max-width:480px){nav{padding:1rem 1.2rem}.hero,.sv,.ps,.fq,.ss,.cs,.pr,.ca{padding:4rem 1.2rem}footer{padding:2rem 1.2rem}}
 .agb{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;max-width:960px;margin:0 auto;background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(167,139,250,0.06));border:1px solid rgba(108,99,255,0.25);border-radius:20px;padding:2.5rem 3rem}
@@ -267,6 +268,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 <li><a href="#ps">Processus</a></li>
 <li><a href="#pr">Offres</a></li>
 <li><a href="#fq">FAQ</a></li>
+<li><a href="/agenceboostia-candidature" style="color:#A78BFA">Candidature CV</a></li>
 <li><a href="/audit-gratuit" class="nc">&#10003; Audit gratuit</a></li>
 </ul>
 <button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -274,6 +276,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 <div class="mm" id="mm">
 <a href="#sv">Services</a><a href="#ps">Processus</a>
 <a href="#pr">Offres</a><a href="#fq">FAQ</a>
+<a href="/agenceboostia-candidature" style="color:#A78BFA;border-bottom:1px solid rgba(255,255,255,0.08)">Candidature CV</a>
 <a href="/audit-gratuit" style="background:var(--primary);color:#fff!important;border-bottom:none;border-radius:8px;text-align:center;padding:.7rem 1.5rem">&#10003; Audit gratuit — 100% gratuit</a>
 </div>
 <section class="hero">
@@ -282,6 +285,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 <div class="badge">&#10022; Agence IA nouvelle génération</div>
 <h1>Propulsez votre business <br>avec <span class="gr">l'intelligence artificielle</span></h1>
 <p>Marketing digital, création web et automatisation IA. Des résultats mesurables, livrés en 7 jours.</p>
+<p style="font-size:.82rem;color:var(--muted);margin-top:.6rem;letter-spacing:.01em">SEO + visibilité IA &mdash; optimisez votre présence sur Google, ChatGPT, Gemini et Perplexity.</p>
 <div class="ha">
 <a href="/audit-gratuit" class="bp">Audit gratuit &#8594;</a>
 <a href="#sv" class="bs">Découvrir les services</a>
@@ -317,10 +321,10 @@ footer>p{color:var(--muted);font-size:.88rem}
 </div>
 <section class="ss">
 <div class="sg">
-<div class="sc rv"><div class="sn" data-c="50" data-s="+">0+</div><div class="sl">Clients accompagnés</div></div>
-<div class="sc rv"><div class="sn" data-c="7" data-s="j">0j</div><div class="sl">Jours de livraison</div></div>
-<div class="sc rv"><div class="sn" data-c="98" data-s="%">0%</div><div class="sl">Taux de satisfaction</div></div>
-<div class="sc rv"><div class="sn" data-c="3" data-s="x">0x</div><div class="sl">Plus rentable que la concurrence</div></div>
+<div class="sc rv"><div class="sn" style="-webkit-text-fill-color:initial;background:none;font-size:2.2rem">🎯</div><div class="sl"><span style="font-size:.95rem;color:var(--text);font-weight:600">Audit offert</span><br><span style="font-size:.8rem;font-weight:400;color:var(--muted)">Diagnostic clair avant engagement</span></div></div>
+<div class="sc rv"><div class="sn" style="-webkit-text-fill-color:initial;background:none;font-size:2.2rem">⚡</div><div class="sl"><span style="font-size:.95rem;color:var(--text);font-weight:600">Réponse rapide</span><br><span style="font-size:.8rem;font-weight:400;color:var(--muted)">Premier retour selon disponibilité</span></div></div>
+<div class="sc rv"><div class="sn" style="-webkit-text-fill-color:initial;background:none;font-size:2.2rem">📦</div><div class="sl"><span style="font-size:.95rem;color:var(--text);font-weight:600">Livrables inclus</span><br><span style="font-size:.8rem;font-weight:400;color:var(--muted)">Site, textes et recommandations</span></div></div>
+<div class="sc rv"><div class="sn" style="-webkit-text-fill-color:initial;background:none;font-size:2.2rem">🔐</div><div class="sl"><span style="font-size:.95rem;color:var(--text);font-weight:600">Propriété client</span><br><span style="font-size:.8rem;font-weight:400;color:var(--muted)">Vos livrables vous appartiennent</span></div></div>
 </div>
 </section>
 <section class="sv" id="sv">
@@ -332,8 +336,28 @@ footer>p{color:var(--muted);font-size:.88rem}
 <div class="svc rv"><div class="si">&#128200;</div><h3>Growth et SEO</h3><p>Acquisition organique et croissance durable avec les meilleurs outils IA.</p><ul class="sf"><li>Audit SEO complet</li><li>Stratégie de contenu IA</li><li>Link building éditorial</li><li>Dashboard analytics</li></ul></div>
 <div class="svc rv"><div class="si">&#127909;</div><h3>Contenu et Branding</h3><p>Identité visuelle forte et contenus impactants créés avec l'IA.</p><ul class="sf"><li>Logo et charte graphique</li><li>Visuels IA Midjourney</li><li>Vidéos et Reels montés</li><li>Pack réseaux sociaux</li></ul></div>
 <div class="svc rv"><div class="si">&#128188;</div><h3>Consulting IA</h3><p>Formation et accompagnement pour intégrer l'IA dans vos processus métier.</p><ul class="sf"><li>Audit IA business</li><li>Roadmap d'implémentation</li><li>Formation équipe</li><li>Suivi mensuel</li></ul></div>
+<div class="svc rv" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(167,139,250,0.05));border-color:rgba(108,99,255,0.3);display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap"><div style="flex:1;min-width:240px"><div class="si">&#129302;</div><h3>SEO &amp; GEO IA</h3><p>Structure, contenus et signaux de confiance pour rendre votre site plus compréhensible par les moteurs de recherche et les assistants IA.</p></div><ul class="sf" style="flex:1;min-width:220px;margin-top:0"><li>Optimisation GEO / AIO</li><li>Contenus lisibles par les IA</li><li>FAQ structurées &amp; données structurées</li><li>Signaux d'autorité thématique</li></ul></div>
 </div>
 </section>
+
+<!-- SECTION NOUVEAU — AgenceBoostIA Candidature -->
+<section style="padding:4rem 2rem;background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap" class="rv">
+  <div style="flex:1;min-width:260px">
+    <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);color:#A78BFA;font-size:.72rem;padding:.25rem .75rem;border-radius:50px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem">&#10022; Nouveau</div>
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.3px;margin-bottom:.75rem;line-height:1.2">AgenceBoostIA Candidature</h2>
+    <p style="color:#9090A8;font-size:.95rem;line-height:1.6;margin-bottom:1.5rem">CV optimisé ATS, lettre ciblée et fiche entretien personnalisée.<br>Une candidature claire, professionnelle et prête à envoyer en 48h.</p>
+    <a href="/agenceboostia-candidature" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(167,139,250,0.15));border:1px solid rgba(167,139,250,0.35);color:#A78BFA;padding:.75rem 1.6rem;border-radius:12px;font-weight:700;font-size:.93rem;transition:all .2s" onmouseover="this.style.background='linear-gradient(135deg,rgba(108,99,255,0.3),rgba(167,139,250,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(108,99,255,0.2),rgba(167,139,250,0.15))'">Découvrir le Pack Candidature Boostée &rarr;</a>
+  </div>
+  <div style="flex:0 0 auto;display:flex;flex-direction:column;gap:.65rem;min-width:240px">
+    <div style="display:flex;align-items:center;gap:.75rem;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:.85rem 1.1rem;font-size:.87rem;color:#9090A8"><span style="font-size:1.2rem">&#128196;</span> CV optimisé ATS</div>
+    <div style="display:flex;align-items:center;gap:.75rem;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:.85rem 1.1rem;font-size:.87rem;color:#9090A8"><span style="font-size:1.2rem">&#9997;</span> Lettre de motivation ciblée</div>
+    <div style="display:flex;align-items:center;gap:.75rem;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:.85rem 1.1rem;font-size:.87rem;color:#9090A8"><span style="font-size:1.2rem">&#127775;</span> Fiche préparation entretien</div>
+    <div style="display:flex;align-items:center;gap:.75rem;background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.2);border-radius:12px;padding:.85rem 1.1rem;font-size:.87rem;color:#A78BFA;font-weight:600"><span>&#10003;</span> Livraison sous 48h &mdash; 69&euro;</div>
+  </div>
+</div>
+</section>
+
 <section class="cs" id="cs">
 <div class="st rv"><div class="tag">Comparaison</div><h2>AgenceBoostIA vs Agence classique</h2><p>Voyez pourquoi nos clients nous choisissent plutôt que les agences traditionnelles.</p></div>
 <div class="ct rv">
@@ -414,6 +438,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 <div class="fi rv"><button class="fb" onclick="tf(this)"><span>Puis-je changer d'offre en cours de route ?</span><span class="fic">+</span></button><div class="fa"><div class="fai">Oui, vous pouvez monter ou descendre d'offre à tout moment sans pénalité. Les ajustements prennent effet au début du mois suivant.</div></div></div>
 <div class="fi rv"><button class="fb" onclick="tf(this)"><span>Comment se passe l'audit gratuit ?</span><span class="fic">+</span></button><div class="fa"><div class="fai">C'est un appel de 30 minutes en visio. Nous analysons votre situation et vous proposons un plan d'action concret. Sans engagement.</div></div></div>
 <div class="fi rv"><button class="fb" onclick="tf(this)"><span>Travaillez-vous avec tous les secteurs d'activité ?</span><span class="fic">+</span></button><div class="fa"><div class="fai">Nous travaillons avec des PME, e-commerces, indépendants et startups dans la plupart des secteurs : retail, immobilier, tech, services B2B, restauration, et plus.</div></div></div>
+<div class="fi rv"><button class="fb" onclick="tf(this)"><span>C'est quoi le GEO IA ?</span><span class="fic">+</span></button><div class="fa"><div class="fai">Le GEO, ou Generative Engine Optimization, consiste à structurer votre site et vos contenus pour qu'ils soient mieux compris par les moteurs de recherche classiques et les assistants IA. Cela ne garantit pas une citation automatique, mais améliore la clarté, la crédibilité et la lisibilité de votre présence en ligne.</div></div></div>
 </div>
 </section>
 <section class="ca">
@@ -465,9 +490,11 @@ var hb=document.getElementById('hb'),mm=document.getElementById('mm');
 hb.addEventListener('click',function(){hb.classList.toggle('open');mm.classList.toggle('open')});
 mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hb.classList.remove('open');mm.classList.remove('open')})});
 window.addEventListener('scroll',function(){document.getElementById('mn').style.background=window.scrollY>50?'rgba(10,10,15,0.98)':'rgba(10,10,15,0.9)'});
-var ob=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');var n=e.target.querySelector('[data-c]');if(n&&!n.dataset.done){n.dataset.done=1;ac(n)}}})},{threshold:0.12});
-document.querySelectorAll('.rv').forEach(function(e){ob.observe(e)});
-function ac(el){var t=parseInt(el.dataset.c),s=el.dataset.s||'',d=1600,st=performance.now();function step(n){var p=Math.min((n-st)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t)+s;if(p<1)requestAnimationFrame(step);else el.textContent=t+s}requestAnimationFrame(step)}
+document.documentElement.classList.add('js-ready');
+var rvEls=document.querySelectorAll('.rv');
+var fb=setTimeout(function(){rvEls.forEach(function(e){e.classList.add('visible')})},2000);
+var ob=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:0.12});
+rvEls.forEach(function(e){ob.observe(e)});
 function tf(b){var i=b.closest('.fi'),o=i.classList.contains('open');document.querySelectorAll('.fi.open').forEach(function(x){x.classList.remove('open')});if(!o)i.classList.add('open')}
 </script>
 <a href="https://wa.me/33783565216?text=Bonjour%2C%20je%20souhaite%20un%20audit%20gratuit%20!" class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
