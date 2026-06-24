@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bulles Dog Wash — Toilettage & Lavage canin à domicile</title>
+<meta name="description" content="Bulles Dog Wash : toilettage et bain pour votre chien, avec des produits naturels. Service doux, rapide et sur réservation." />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#EEF6FF;
+  --white:#FFFFFF;
+  --blue:#3B82F6;
+  --blue-dark:#1D4ED8;
+  --blue-light:#BFDBFE;
+  --teal:#14B8A6;
+  --teal-light:#CCFBF1;
+  --sand:#FFF7ED;
+  --sand2:#FEF3C7;
+  --brown:#78350F;
+  --text:#1E293B;
+  --muted:#64748B;
+  --border:#E2E8F0;
+  --r:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* === ANNONCE BAR === */
+.bar{background:linear-gradient(90deg,var(--blue),var(--teal));color:#fff;text-align:center;padding:.5rem 1rem;font-size:.82rem;font-weight:600}
+.bar a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+/* === NAV === */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.4rem;font-weight:900;color:var(--text)}
+.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.logo span{color:var(--blue)}
+nav ul{display:flex;align-items:center;gap:2rem;list-style:none}
+nav ul a{color:var(--muted);font-size:.9rem;font-weight:500;transition:color .2s}
+nav ul a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff!important;padding:.55rem 1.3rem;border-radius:10px;font-weight:700!important;transition:background .2s!important}
+.nav-cta:hover{background:var(--blue-dark)!important}
+.hb{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hb span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hb.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hb.open span:nth-child(2){opacity:0}
+.hb.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mm{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99;background:#fff;padding:5rem 2rem 2rem;flex-direction:column;gap:1.5rem}
+.mm.open{display:flex}
+.mm a{color:var(--text);font-size:1.2rem;font-weight:700;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.mm a:last-child{background:var(--blue);color:#fff!important;border:none;border-radius:10px;text-align:center;padding:.8rem 1.5rem}
+
+/* === HERO === */
+.hero{min-height:90vh;display:flex;align-items:center;padding:6rem 2rem 4rem;background:linear-gradient(160deg,#EEF6FF 0%,#F0FDF4 50%,#FFF7ED 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(20,184,166,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--blue-light);padding:.4rem 1rem;border-radius:50px;font-size:.82rem;color:var(--blue);margin-bottom:1.5rem;font-weight:600;box-shadow:0 2px 8px rgba(59,130,246,0.1)}
+.hero h1{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:1.2rem;color:var(--text)}
+.gr{background:linear-gradient(135deg,var(--blue) 0%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.1rem;color:var(--muted);margin-bottom:2rem;max-width:480px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn-primary{background:var(--blue);color:#fff;padding:.9rem 2rem;border-radius:12px;font-weight:700;font-size:1rem;display:inline-block;transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(59,130,246,0.35)}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,0.45)}
+.btn-secondary{background:#fff;color:var(--text);padding:.9rem 2rem;border-radius:12px;font-weight:600;font-size:1rem;display:inline-block;border:1.5px solid var(--border);transition:border-color .2s,box-shadow .2s}
+.btn-secondary:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(59,130,246,0.1)}
+.trust-row{display:flex;gap:1.5rem;flex-wrap:wrap}
+.trust-item{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--muted);font-weight:500}
+.trust-item::before{content:"✓";color:var(--teal);font-weight:800}
+/* Illustration côté droit */
+.hero-visual{position:relative}
+.hero-card{background:#fff;border-radius:24px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,0.08),0 4px 16px rgba(59,130,246,0.08);position:relative}
+.hero-card::before{content:'🫧';position:absolute;top:-12px;right:20px;font-size:2rem}
+.dog-emoji{font-size:5rem;text-align:center;margin-bottom:1rem;display:block}
+.hero-card h3{font-size:1.1rem;font-weight:800;margin-bottom:.5rem;text-align:center}
+.hero-card p{font-size:.85rem;color:var(--muted);text-align:center;margin-bottom:1.2rem}
+.hero-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.hero-stat{background:var(--sky);border-radius:12px;padding:.8rem 1rem;text-align:center}
+.hero-stat .num{font-size:1.6rem;font-weight:900;color:var(--blue);line-height:1}
+.hero-stat .lbl{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+.bubble{position:absolute;border-radius:50%;border:2px solid rgba(59,130,246,0.2);animation:float 4s ease-in-out infinite;pointer-events:none}
+.bubble:nth-child(1){width:60px;height:60px;top:-30px;left:20px;animation-delay:0s}
+.bubble:nth-child(2){width:35px;height:35px;top:20px;right:-10px;animation-delay:1.5s}
+.bubble:nth-child(3){width:45px;height:45px;bottom:20px;left:-15px;animation-delay:3s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:.6}50%{transform:translateY(-12px) scale(1.05);opacity:.3}}
+
+/* === STATS BAND === */
+.stats-band{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2rem;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-size:2rem;font-weight:900;color:var(--blue);line-height:1}
+.stat-lbl{font-size:.82rem;color:var(--muted);margin-top:.2rem}
+
+/* === SECTIONS === */
+.sec{padding:5rem 2rem}
+.sec-alt{background:var(--sky)}
+.sec-sand{background:var(--sand)}
+.inner{max-width:1100px;margin:0 auto}
+.sec-tag{display:inline-block;background:var(--blue-light);color:var(--blue-dark);font-size:.75rem;font-weight:700;padding:.3rem .9rem;border-radius:50px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.sec-tag.teal{background:var(--teal-light);color:#0F766E}
+.sec-tag.sand{background:var(--sand2);color:var(--brown)}
+.sec h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-.5px;margin-bottom:.75rem}
+.sec .sub{color:var(--muted);font-size:1.05rem;max-width:540px;margin-bottom:3rem}
+.text-center{text-align:center}.text-center .sub{margin-left:auto;margin-right:auto}
+
+/* === SERVICES === */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.service-card{background:#fff;border-radius:var(--r);border:1.5px solid var(--border);padding:2rem;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--teal));opacity:0;transition:opacity .3s}
+.service-card:hover{border-color:var(--blue-light);transform:translateY(-5px);box-shadow:0 16px 40px rgba(59,130,246,0.12)}
+.service-card:hover::before{opacity:1}
+.svc-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--sky),var(--blue-light));display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.2rem}
+.service-card h3{font-size:1.1rem;font-weight:800;margin-bottom:.5rem}
+.service-card p{font-size:.9rem;color:var(--muted);margin-bottom:1.2rem}
+.service-card .duration{display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--blue);font-weight:600;background:var(--sky);padding:.3rem .7rem;border-radius:50px}
+.service-price{font-size:1.5rem;font-weight:900;color:var(--blue);margin-top:.75rem}
+.service-price span{font-size:.85rem;font-weight:400;color:var(--muted)}
+
+/* === COMMENT ÇA MARCHE === */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:900px;margin:0 auto;position:relative}
+.steps::before{content:'';position:absolute;top:40px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--blue-light),var(--teal-light));z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;margin:0 auto 1.2rem;box-shadow:0 4px 16px rgba(59,130,246,0.3)}
+.step h3{font-size:1rem;font-weight:800;margin-bottom:.4rem}
+.step p{font-size:.88rem;color:var(--muted)}
+
+/* === TARIFS === */
+.tarifs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1000px;margin:0 auto}
+.tarif-card{background:#fff;border-radius:var(--r);border:2px solid var(--border);padding:2rem;text-align:center;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative}
+.tarif-card.featured{border-color:var(--blue);box-shadow:0 8px 40px rgba(59,130,246,0.15)}
+.tarif-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;font-size:.75rem;font-weight:700;padding:.3rem 1.1rem;border-radius:50px;white-space:nowrap}
+.tarif-card:not(.featured):hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 30px rgba(59,130,246,0.08)}
+.tarif-dog{font-size:3rem;margin-bottom:.75rem;display:block}
+.tarif-card h3{font-size:1.1rem;font-weight:800;margin-bottom:.3rem}
+.tarif-card .desc{font-size:.85rem;color:var(--muted);margin-bottom:1.2rem}
+.tarif-price{font-size:3rem;font-weight:900;color:var(--blue);line-height:1;margin-bottom:.25rem}
+.tarif-price sup{font-size:1.4rem;vertical-align:super}
+.tarif-from{font-size:.78rem;color:var(--muted);margin-bottom:1.5rem}
+.tarif-list{list-style:none;text-align:left;margin-bottom:1.8rem}
+.tarif-list li{font-size:.88rem;color:var(--muted);padding:.4rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.tarif-list li:last-child{border-bottom:none}
+.tarif-list li::before{content:"✓";color:var(--teal);font-weight:800;flex-shrink:0}
+.btn-tarif{display:block;width:100%;padding:.85rem;border-radius:10px;font-weight:700;font-size:.95rem;text-align:center;transition:all .2s}
+.btn-tarif-primary{background:var(--blue);color:#fff}
+.btn-tarif-primary:hover{background:var(--blue-dark)}
+.btn-tarif-outline{background:transparent;color:var(--blue);border:1.5px solid var(--blue-light)}
+.btn-tarif-outline:hover{background:var(--sky)}
+
+/* === TEMOIGNAGES === */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.testi-card{background:#fff;border-radius:var(--r);border:1.5px solid var(--border);padding:1.8rem;transition:border-color .3s}
+.testi-card:hover{border-color:var(--blue-light)}
+.stars{color:#F59E0B;font-size:1rem;letter-spacing:2px;margin-bottom:.8rem}
+.testi-card p{font-size:.92rem;color:var(--text);line-height:1.7;margin-bottom:1.2rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.testi-name{font-size:.9rem;font-weight:700}
+.testi-dog{font-size:.8rem;color:var(--muted)}
+
+/* === GALERIE === */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto}
+.gallery-item{aspect-ratio:1;border-radius:var(--r);overflow:hidden;position:relative;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:4rem;border:1.5px solid var(--border);transition:transform .3s,box-shadow .3s}
+.gallery-item:hover{transform:scale(1.02);box-shadow:0 8px 30px rgba(59,130,246,0.15)}
+.gallery-item span{font-size:5rem}
+
+/* === ZONE === */
+.zone-inner{max-width:800px;margin:0 auto;text-align:center}
+.zone-pills{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1.5rem}
+.zone-pill{background:#fff;border:1.5px solid var(--blue-light);color:var(--blue-dark);font-size:.85rem;font-weight:600;padding:.4rem 1rem;border-radius:50px}
+
+/* === BOOKING CTA === */
+.cta-section{background:linear-gradient(135deg,var(--blue) 0%,var(--teal) 100%);padding:5rem 2rem;text-align:center;color:#fff}
+.cta-section h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-.5px;margin-bottom:1rem}
+.cta-section p{font-size:1.05rem;opacity:.9;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.btn-white{background:#fff;color:var(--blue);padding:1rem 2.5rem;border-radius:14px;font-weight:800;font-size:1.05rem;display:inline-block;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(0,0,0,0.12)}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+.cta-trust{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.cta-trust span{font-size:.82rem;opacity:.85;display:flex;align-items:center;gap:.3rem}
+.cta-trust span::before{content:"✓";font-weight:800}
+
+/* === FAQ === */
+.faq-list{max-width:680px;margin:0 auto}
+.faq-item{border:1.5px solid var(--border);border-radius:12px;margin-bottom:.75rem;overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:var(--blue-light)}
+.faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;background:none;border:none;color:var(--text);font-size:.97rem;font-weight:600;cursor:pointer;text-align:left;gap:1rem}
+.faq-btn:hover{background:var(--sky)}
+.faq-ico{flex-shrink:0;width:26px;height:26px;background:var(--blue-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:transform .3s;color:var(--blue);font-weight:700}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:var(--blue);color:#fff}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.5rem}
+.faq-ans-inner{padding-bottom:1.2rem;color:var(--muted);font-size:.92rem;line-height:1.7}
+.faq-item.open .faq-ans{max-height:300px}
+
+/* === FOOTER === */
+footer{background:var(--text);color:#fff;padding:3rem 2rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+.footer-brand .logo{color:#fff;margin-bottom:1rem}
+.footer-brand p{font-size:.88rem;color:rgba(255,255,255,0.55);line-height:1.7;max-width:280px}
+.footer-brand .socials{display:flex;gap:.8rem;margin-top:1.2rem}
+.social-btn{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .2s}
+.social-btn:hover{background:rgba(255,255,255,0.15)}
+footer h4{font-size:.9rem;font-weight:700;margin-bottom:1rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.06em}
+footer ul{list-style:none}
+footer ul li{margin-bottom:.5rem}
+footer ul li a{font-size:.88rem;color:rgba(255,255,255,0.5);transition:color .2s}
+footer ul li a:hover{color:#fff}
+.footer-bottom{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.footer-bottom p{font-size:.82rem;color:rgba(255,255,255,0.4)}
+.footer-bottom a{color:rgba(255,255,255,0.5);font-size:.82rem;transition:color .2s}
+.footer-bottom a:hover{color:#fff}
+.made-by{font-size:.8rem;color:rgba(255,255,255,0.3);display:flex;align-items:center;gap:.4rem}
+.made-by a{color:rgba(255,255,255,0.45)}
+
+/* === FLOAT WHATSAPP === */
+.wa{position:fixed;bottom:1.5rem;right:1.5rem;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.45);z-index:999;transition:transform .2s,box-shadow .2s}
+.wa:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,0.6)}
+
+/* === ANIMATE === */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.rv.visible{opacity:1;transform:translateY(0)}
+
+/* === RESPONSIVE === */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem}.hero-visual{order:-1;max-width:380px;margin:0 auto}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .steps::before{display:none}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  nav ul{display:none}.hb{display:flex}
+}
+@media(max-width:560px){
+  .hero,.sec,.cta-section{padding-left:1.2rem;padding-right:1.2rem}
+  nav{padding:.9rem 1.2rem}
+  .stats-band{gap:1.5rem}
+  .footer-inner{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .steps{gap:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Barre annonce -->
+<div class="bar">🐾 Offre de lancement — 20% de réduction sur votre 1er bain ! <a href="#reserver">Réserver maintenant →</a></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-icon">🫧</div>
+    Bulles<span>.</span>
+  </div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#reserver" class="nav-cta">Réserver →</a></li>
+  </ul>
+  <button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mm" id="mm">
+  <div style="display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:900;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
+    <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:10px;display:flex;align-items:center;justify-content:center">🫧</div>
+    Bulles.
+  </div>
+  <a href="#services" onclick="closeMM()">Services</a>
+  <a href="#tarifs" onclick="closeMM()">Tarifs</a>
+  <a href="#avis" onclick="closeMM()">Avis clients</a>
+  <a href="#faq" onclick="closeMM()">FAQ</a>
+  <a href="#reserver" onclick="closeMM()">Réserver — 20% off →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge rv">🐶 Spécialiste du toilettage canin</div>
+      <h1 class="rv">Votre chien mérite<br>les soins <span class="gr">qu'il adore</span></h1>
+      <p class="rv">Bain, coupe, brushing et soin des oreilles — réalisés avec des produits 100% naturels, dans un cadre doux et rassurant pour votre compagnon.</p>
+      <div class="hero-actions rv">
+        <a href="#reserver" class="btn-primary">Prendre rendez-vous →</a>
+        <a href="#services" class="btn-secondary">Voir les services</a>
+      </div>
+      <div class="trust-row rv">
+        <span class="trust-item">Produits naturels</span>
+        <span class="trust-item">Sans stress garanti</span>
+        <span class="trust-item">Sur rendez-vous</span>
+        <span class="trust-item">Tarifs transparents</span>
+      </div>
+    </div>
+    <div class="hero-visual rv">
+      <div style="position:relative">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="hero-card">
+          <span class="dog-emoji">🐕</span>
+          <h3>Votre chien repart comme un prince !</h3>
+          <p>Plus de 300 chiens toilettés avec le sourire.</p>
+          <div class="hero-stat-row">
+            <div class="hero-stat"><div class="num">300<span style="font-size:.8rem">+</span></div><div class="lbl">Chiens heureux</div></div>
+            <div class="hero-stat"><div class="num">5⭐</div><div class="lbl">Note moyenne</div></div>
+            <div class="hero-stat"><div class="num">24h</div><div class="lbl">Réponse rapide</div></div>
+            <div class="hero-stat"><div class="num">100%</div><div class="lbl">Naturel</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-item rv"><div class="stat-num">300+</div><div class="stat-lbl">Chiens toilettés</div></div>
+  <div class="stat-item rv"><div class="stat-num">5 ⭐</div><div class="stat-lbl">Note Google</div></div>
+  <div class="stat-item rv"><div class="stat-num">100%</div><div class="stat-lbl">Produits naturels</div></div>
+  <div class="stat-item rv"><div class="stat-num">48h</div><div class="stat-lbl">RDV disponible</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="inner">
+    <div class="text-center rv">
+      <div class="sec-tag">Nos services</div>
+      <h2>Tout pour chouchouter votre chien</h2>
+      <p class="sub">Des soins adaptés à chaque race et morphologie, réalisés avec amour et des produits certifiés bio.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card rv">
+        <div class="svc-icon">🛁</div>
+        <h3>Bain complet</h3>
+        <p>Shampoing doux naturel, rinçage soigné, séchage professionnel et brossage. Votre chien repart propre et parfumé.</p>
+        <div class="duration">⏱ 45 min – 1h30</div>
+        <div class="service-price">À partir de 25€ <span>selon la taille</span></div>
+      </div>
+      <div class="service-card rv">
+        <div class="svc-icon">✂️</div>
+        <h3>Toilettage complet</h3>
+        <p>Bain + coupe aux ciseaux ou à la tondeuse, stylisme selon la race ou vos envies, finitions soignées.</p>
+        <div class="duration">⏱ 1h30 – 2h30</div>
+        <div class="service-price">À partir de 45€ <span>selon la race</span></div>
+      </div>
+      <div class="service-card rv">
+        <div class="svc-icon">💅</div>
+        <h3>Soin beauté</h3>
+        <p>Coupe des griffes, nettoyage des oreilles, démêlage et hydratation du pelage. Le spa day de votre compagnon.</p>
+        <div class="duration">⏱ 30 – 45 min</div>
+        <div class="service-price">À partir de 20€ <span>à la carte</span></div>
+      </div>
+      <div class="service-card rv">
+        <div class="svc-icon">🌿</div>
+        <h3>Soin apaisant</h3>
+        <p>Pour les chiens sensibles ou anxieux : bain à l'avoine, massage relaxant, séchage tout en douceur. Idéal pour les premières fois.</p>
+        <div class="duration">⏱ 1h – 1h30</div>
+        <div class="service-price">À partir de 35€ <span>sur réservation</span></div>
+      </div>
+      <div class="service-card rv">
+        <div class="svc-icon">🐾</div>
+        <h3>Chiot première visite</h3>
+        <p>Une initiation toute douce pour habituer votre chiot au toilettage dès le plus jeune âge. Approche progressive et bienveillante.</p>
+        <div class="duration">⏱ 30 min</div>
+        <div class="service-price">15€ <span>offre découverte</span></div>
+      </div>
+      <div class="service-card rv">
+        <div class="svc-icon">🫧</div>
+        <h3>Abonnement Bulles</h3>
+        <p>Bain mensuel à tarif préférentiel + priorité de réservation + 1 soin offert tous les 3 mois. Pour les habitués.</p>
+        <div class="duration">⏱ Mensuel</div>
+        <div class="service-price">Dès 19€<span>/mois</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="sec sec-alt" id="processus">
+  <div class="inner">
+    <div class="text-center rv">
+      <div class="sec-tag teal">Comment ça marche</div>
+      <h2>Simple comme une bulle 🫧</h2>
+      <p class="sub">4 étapes pour que votre chien reparte avec le pelage brillant et la queue en l'air.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-num">📅</div>
+        <h3>Réservez en ligne</h3>
+        <p>Choisissez un créneau sur notre agenda en ligne, 24h/24. Confirmation par SMS.</p>
+      </div>
+      <div class="step rv">
+        <div class="step-num">🚗</div>
+        <h3>Amenez votre chien</h3>
+        <p>Déposez-le chez nous ou profitez de notre service de collecte à domicile (en option).</p>
+      </div>
+      <div class="step rv">
+        <div class="step-num">🛁</div>
+        <h3>On s'occupe de tout</h3>
+        <p>Bain, soin, coupe — votre chien est entre de bonnes mains dans notre espace calme.</p>
+      </div>
+      <div class="step rv">
+        <div class="step-num">✨</div>
+        <h3>Récupérez-le beau</h3>
+        <p>Notification SMS quand c'est prêt. Repartez avec un chien propre, parfumé, heureux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="sec" id="tarifs">
+  <div class="inner">
+    <div class="text-center rv">
+      <div class="sec-tag">Tarifs</div>
+      <h2>Des prix honnêtes, sans surprise</h2>
+      <p class="sub">Le tarif final dépend de la taille et du poil de votre chien. Demandez un devis gratuit par téléphone.</p>
+    </div>
+    <div class="tarifs-grid">
+      <div class="tarif-card rv">
+        <span class="tarif-dog">🐩</span>
+        <h3>Petit chien</h3>
+        <p class="desc">Chihuahua, Yorkshire, Bichon…<br>Jusqu'à 10 kg</p>
+        <div class="tarif-price"><sup>€</sup>25</div>
+        <div class="tarif-from">à partir de / bain complet</div>
+        <ul class="tarif-list">
+          <li>Bain + séchage</li>
+          <li>Brossage pelage</li>
+          <li>Nettoyage oreilles</li>
+          <li>Coupe griffes incluse</li>
+        </ul>
+        <a href="#reserver" class="btn-tarif btn-tarif-outline">Réserver</a>
+      </div>
+      <div class="tarif-card featured rv">
+        <div class="tarif-badge">⭐ Le plus populaire</div>
+        <span class="tarif-dog">🦮</span>
+        <h3>Chien moyen</h3>
+        <p class="desc">Cocker, Beagle, Border Collie…<br>10 à 25 kg</p>
+        <div class="tarif-price"><sup>€</sup>40</div>
+        <div class="tarif-from">à partir de / bain complet</div>
+        <ul class="tarif-list">
+          <li>Bain + séchage professionnel</li>
+          <li>Brossage et démêlage</li>
+          <li>Nettoyage oreilles</li>
+          <li>Coupe griffes incluse</li>
+          <li>Parfum hypoallergénique</li>
+        </ul>
+        <a href="#reserver" class="btn-tarif btn-tarif-primary">Réserver →</a>
+      </div>
+      <div class="tarif-card rv">
+        <span class="tarif-dog">🐕‍🦺</span>
+        <h3>Grand chien</h3>
+        <p class="desc">Golden, Husky, Berger Allemand…<br>25 kg et plus</p>
+        <div class="tarif-price"><sup>€</sup>60</div>
+        <div class="tarif-from">à partir de / bain complet</div>
+        <ul class="tarif-list">
+          <li>Bain approfondi + séchage</li>
+          <li>Brossage intensif</li>
+          <li>Nettoyage oreilles</li>
+          <li>Coupe griffes incluse</li>
+          <li>Traitement hydratant offert</li>
+        </ul>
+        <a href="#reserver" class="btn-tarif btn-tarif-outline">Réserver</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;font-size:.88rem;color:var(--muted)">🐾 Toilettage complet (bain + coupe) : ajouter 20 à 40€ selon la race. <a href="#reserver" style="color:var(--blue);font-weight:600">Demander un devis gratuit</a></p>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="sec sec-alt" id="galerie">
+  <div class="inner">
+    <div class="text-center rv">
+      <div class="sec-tag teal">Galerie</div>
+      <h2>Nos petits clients adorés 🐾</h2>
+      <p class="sub">Quelques photos de nos chiens avant/après leur séance Bulles.</p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item rv"><span>🐶</span></div>
+      <div class="gallery-item rv"><span>🐕</span></div>
+      <div class="gallery-item rv"><span>🦮</span></div>
+      <div class="gallery-item rv"><span>🐩</span></div>
+      <div class="gallery-item rv"><span>🐕‍🦺</span></div>
+      <div class="gallery-item rv"><span>🐾</span></div>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--muted)">📸 Suivez-nous sur <a href="#" style="color:var(--blue);font-weight:600">Instagram @bulles.dogwash</a> pour encore plus de belles têtes !</p>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="sec" id="avis">
+  <div class="inner">
+    <div class="text-center rv">
+      <div class="sec-tag">Avis clients</div>
+      <h2>Ils adorent Bulles 💙</h2>
+      <p class="sub">Plus de 80 avis 5 étoiles sur Google. Voici ce qu'en disent nos clients.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card rv">
+        <div class="stars">★★★★★</div>
+        <p>« Mon Golden retriever ressort toujours magnifique ! L'équipe est super douce, il ne stresse pas du tout. Je recommande à 100%. »</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩</div>
+          <div>
+            <div class="testi-name">Sophie M.</div>
+            <div class="testi-dog">🐕 Propriétaire de Rocky</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv">
+        <div class="stars">★★★★★</div>
+        <p>« Ma Yorkshire est tellement propre et sent si bon après chaque visite ! Les tarifs sont honnêtes et les créneaux faciles à trouver. »</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👨</div>
+          <div>
+            <div class="testi-name">Thomas B.</div>
+            <div class="testi-dog">🐩 Propriétaire de Bella</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv">
+        <div class="stars">★★★★★</div>
+        <p>« Enfin un toiletteur qui comprend les chiens anxieux ! Mon Beagle était phobique du bain, maintenant il y va la queue en l'air. Merci ! »</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩</div>
+          <div>
+            <div class="testi-name">Laure D.</div>
+            <div class="testi-dog">🦮 Propriétaire de Noisette</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section class="sec sec-sand" id="zone">
+  <div class="zone-inner rv">
+    <div class="sec-tag sand" style="margin:0 auto 1rem">Zone d'intervention</div>
+    <h2>On est près de chez vous 📍</h2>
+    <p class="sub" style="margin:0 auto 1.5rem">Situés au cœur de la ville, nous intervenons également à domicile dans les quartiers suivants :</p>
+    <div class="zone-pills">
+      <span class="zone-pill">Centre-ville</span>
+      <span class="zone-pill">Vieux-Port</span>
+      <span class="zone-pill">Préfecture</span>
+      <span class="zone-pill">Castellane</span>
+      <span class="zone-pill">Belle-de-Mai</span>
+      <span class="zone-pill">Saint-Charles</span>
+      <span class="zone-pill">Capucins</span>
+      <span class="zone-pill">Cours Julien</span>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.88rem;color:var(--muted)">📞 Votre quartier n'est pas listé ? <a href="tel:+33600000000" style="color:var(--blue);font-weight:600">Appelez-nous</a> — on trouvera une solution.</p>
+  </div>
+</section>
+
+<!-- CTA BOOKING -->
+<section class="cta-section" id="reserver">
+  <div class="rv">
+    <h2>Offrez une bulle de bonheur à votre chien 🫧</h2>
+    <p>Réservez votre créneau en 2 minutes. Premier bain à -20% avec le code BULLES20.</p>
+    <a href="tel:+33600000000" class="btn-white">📅 Prendre rendez-vous →</a>
+    <div class="cta-trust">
+      <span>Réponse sous 2h</span>
+      <span>Annulation gratuite</span>
+      <span>Sans engagement</span>
+      <span>Devis gratuit</span>
+    </div>
+    <div style="margin-top:2.5rem;background:rgba(255,255,255,0.12);border-radius:16px;padding:1.5rem 2rem;max-width:500px;margin-left:auto;margin-right:auto">
+      <p style="font-size:.88rem;opacity:.9;margin-bottom:.5rem;font-weight:700">📍 Retrouvez-nous</p>
+      <p style="font-size:.9rem;opacity:.8">12 rue des Lilas, 13001 Marseille</p>
+      <p style="font-size:.9rem;opacity:.8;margin-top:.3rem">📞 06 00 00 00 00 · Lun-Sam 9h–18h</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec sec-alt" id="faq">
+  <div class="inner">
+    <div class="text-center rv">
+      <div class="sec-tag">FAQ</div>
+      <h2>Questions fréquentes</h2>
+      <p class="sub">Tout ce qu'il faut savoir avant votre première visite.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item rv">
+        <button class="faq-btn" onclick="faq(this)"><span>Mon chien est très anxieux — êtes-vous formés pour ça ?</span><span class="faq-ico">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Oui, absolument. Notre équipe est formée aux approches bienveillantes pour les chiens anxieux. Nous adaptons le rythme à chaque animal, utilisons des produits apaisants et ne forçons jamais. En cas de forte anxiété, nous proposons un soin « découverte » progressif sur plusieurs visites.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-btn" onclick="faq(this)"><span>À quelle fréquence dois-je faire toiletter mon chien ?</span><span class="faq-ico">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Cela dépend de la race et du type de poil. En général, un bain toutes les 4 à 6 semaines est recommandé. Pour les chiens à poil long ou bouclé, un toilettage complet tous les 2 mois est idéal. Nous vous conseillerons lors de votre première visite.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-btn" onclick="faq(this)"><span>Proposez-vous un service à domicile ?</span><span class="faq-ico">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Oui ! Nous proposons un service de collecte et de restitution à domicile dans un rayon de 10 km autour de notre salon. Ce service est disponible en option pour 10€ supplémentaires. À réserver directement par téléphone.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-btn" onclick="faq(this)"><span>Vos produits sont-ils vraiment naturels ?</span><span class="faq-ico">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Oui, nous utilisons exclusivement des shampoings et soins certifiés biologiques, sans sulfates, parabènes ou colorants artificiels. Ils sont doux pour la peau sensible et sûrs pour les chiots dès 3 mois. La liste des ingrédients est disponible sur demande.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-btn" onclick="faq(this)"><span>Comment se passe l'annulation ou le report de RDV ?</span><span class="faq-ico">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">L'annulation est gratuite jusqu'à 24h avant le rendez-vous. Au-delà, des frais de 15€ peuvent s'appliquer. Pour reporter, il vous suffit de nous contacter par SMS ou par téléphone — nous ferons notre possible pour trouver un nouveau créneau rapidement.</div></div>
+      </div>
+      <div class="faq-item rv">
+        <button class="faq-btn" onclick="faq(this)"><span>Puis-je rester avec mon chien pendant le toilettage ?</span><span class="faq-ico">+</span></button>
+        <div class="faq-ans"><div class="faq-ans-inner">Pour la plupart des chiens, il est préférable de les laisser seuls avec nous — la présence du maître peut parfois les rendre plus agités ! Cependant, pour les premières visites ou les chiens très anxieux, nous nous adaptons. Discutons-en ensemble lors de votre réservation.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo footer-brand-logo">
+        <div class="logo-icon">🫧</div>
+        <span style="color:#fff">Bulles<span style="color:var(--blue)">.</span></span>
+      </div>
+      <p>Votre salon de toilettage canin de confiance. Produits naturels, approche bienveillante, résultats magnifiques.</p>
+      <div class="socials">
+        <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+        <a href="#" class="social-btn" aria-label="Facebook">💙</a>
+        <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
+      </div>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#services">Nos services</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#avis">Avis clients</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li>
+        <li><a href="mailto:hello@bullesdogwash.fr">✉️ hello@bullesdogwash.fr</a></li>
+        <li><a href="#">📍 12 rue des Lilas, 13001 Marseille</a></li>
+        <li style="padding-top:.5rem;color:rgba(255,255,255,0.4);font-size:.82rem">Lun – Sam : 9h00 – 18h00</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Bulles Dog Wash — Tous droits réservés.</p>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+    <div class="made-by">Site réalisé par <a href="https://www.agenceboostia.fr" target="_blank" rel="noopener">AgenceBoostIA</a></div>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20souhaite%20réserver%20un%20bain%20pour%20mon%20chien%20!" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Menu mobile
+const hb = document.getElementById('hb');
+const mm = document.getElementById('mm');
+hb.addEventListener('click', () => { hb.classList.toggle('open'); mm.classList.toggle('open'); });
+function closeMM() { hb.classList.remove('open'); mm.classList.remove('open'); }
+
+// FAQ accordion
+function faq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(f => f.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
