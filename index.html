@@ -85,7 +85,41 @@
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0A0A0F;--bg2:#111118;--bg3:#16161F;--border:rgba(255,255,255,0.08);--primary:#6C63FF;--pl:#8B85FF;--a2:#A78BFA;--green:#10B981;--red:#EF4444;--text:#F0F0FF;--muted:#9090A8;--r:16px;--sh:0 8px 40px rgba(108,99,255,0.18)}
+:root {
+  /* Fonds */
+  --bg: #F6F9FF;          /* Ice White — fond principal */
+  --bg2: #FFFFFF;         /* Pure White — sections alternées */
+  --bg3: #EEF3FA;         /* Soft Silver — cards secondaires */
+  --bg4: #EAF2FF;         /* Frost Blue — accent fond */
+  --bg5: #F3EFFF;         /* Pale Lavender — accent violet doux */
+
+  /* Texte */
+  --text: #071126;        /* Deep Navy — titres H1/H2 */
+  --text2: #0B1633;       /* Navy Premium — sous-titres */
+  --text3: #1E293B;       /* Graphite Blue — corps de texte */
+  --muted: #64748B;       /* Muted Slate — texte secondaire */
+
+  /* Couleurs principales */
+  --primary: #2563FF;     /* Azure Blue — CTA principal */
+  --primary2: #0F6BFF;    /* Electric Blue — hover CTA */
+  --pl: #0F6BFF;          /* Alias compat V2 → primary2 */
+  --cyan: #22D3EE;        /* Soft Cyan — accents IA/tech */
+  --cyan2: #38BDF8;       /* Sky Cyan — highlights */
+  --violet: #6366F1;      /* Blue Violet — accent premium */
+  --violet2: #8B5CF6;     /* Premium Violet — gradient */
+  --a2: #A78BFA;          /* Soft Lavender — accent doux */
+  --green: #10B981;       /* Conservé */
+  --red: #EF4444;         /* Conservé */
+
+  /* UI */
+  --border: rgba(37, 99, 255, 0.10);
+  --border2: rgba(99, 102, 241, 0.15);
+  --sh: 0 4px 24px rgba(37, 99, 255, 0.08);
+  --sh2: 0 8px 40px rgba(99, 102, 241, 0.12);
+  --r: 20px;              /* Plus arrondi que V2 (16px) */
+  --r2: 28px;             /* Cards premium */
+  --r3: 50px;             /* Badges/pills */
+}
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -254,24 +288,8 @@ footer>p{color:var(--muted);font-size:.88rem}
 </div>
 <nav id="mn">
 <a href="/" class="nl">
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="14" cy="14" r="12" stroke="#8B85FF" stroke-width="1.2" fill="none" opacity="0.5"/>
-    <circle cx="14" cy="4" r="2" fill="#8B85FF"/>
-    <circle cx="22" cy="9" r="1.8" fill="#7870FF"/>
-    <circle cx="22" cy="19" r="1.8" fill="#7870FF"/>
-    <circle cx="14" cy="24" r="1.8" fill="#A78BFA"/>
-    <circle cx="6" cy="19" r="1.8" fill="#7870FF"/>
-    <circle cx="6" cy="9" r="1.8" fill="#7870FF"/>
-    <path d="M14 4 L22 9 L22 19 L14 24 L6 19 L6 9 Z" fill="none" stroke="#6C63FF" stroke-width="0.8" opacity="0.6"/>
-    <line x1="14" y1="4" x2="14" y2="24" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-    <line x1="6" y1="9" x2="22" y2="19" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-    <line x1="22" y1="9" x2="6" y2="19" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-    <rect x="9" y="17" width="2.2" height="4" rx="0.7" fill="#6C63FF"/>
-    <rect x="12.2" y="14" width="2.2" height="7" rx="0.7" fill="#8B85FF"/>
-    <rect x="15.4" y="11" width="2.2" height="10" rx="0.7" fill="#A78BFA"/>
-    <path d="M19.5 8.5 L23 5 M23 5 L20.5 5 M23 5 L23 7.5" stroke="#A78BFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  AgenceBoost<span>IA</span>
+  <img src="/logo-v3.png" alt="AgenceBoostIA" height="38" width="38" style="border-radius:8px">
+  <span style="font-size:1.3rem;font-weight:800;color:var(--text)">AgenceBoost<span style="color:var(--primary)">IA</span></span>
 </a>
 <ul>
 <li><a href="#sv">Services</a></li>
@@ -450,23 +468,7 @@ footer>p{color:var(--muted);font-size:.88rem}
 <footer>
 <a href="/" style="text-decoration:none;color:inherit">
   <div class="flo">
-    <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="14" cy="14" r="12" stroke="#8B85FF" stroke-width="1.2" fill="none" opacity="0.5"/>
-      <circle cx="14" cy="4" r="2" fill="#8B85FF"/>
-      <circle cx="22" cy="9" r="1.8" fill="#7870FF"/>
-      <circle cx="22" cy="19" r="1.8" fill="#7870FF"/>
-      <circle cx="14" cy="24" r="1.8" fill="#A78BFA"/>
-      <circle cx="6" cy="19" r="1.8" fill="#7870FF"/>
-      <circle cx="6" cy="9" r="1.8" fill="#7870FF"/>
-      <path d="M14 4 L22 9 L22 19 L14 24 L6 19 L6 9 Z" fill="none" stroke="#6C63FF" stroke-width="0.8" opacity="0.6"/>
-      <line x1="14" y1="4" x2="14" y2="24" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-      <line x1="6" y1="9" x2="22" y2="19" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-      <line x1="22" y1="9" x2="6" y2="19" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-      <rect x="9" y="17" width="2.2" height="4" rx="0.7" fill="#6C63FF"/>
-      <rect x="12.2" y="14" width="2.2" height="7" rx="0.7" fill="#8B85FF"/>
-      <rect x="15.4" y="11" width="2.2" height="10" rx="0.7" fill="#A78BFA"/>
-      <path d="M19.5 8.5 L23 5 M23 5 L20.5 5 M23 5 L23 7.5" stroke="#A78BFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <img src="/logo-v3.png" alt="AgenceBoostIA" height="30" width="30" style="border-radius:6px">
     AgenceBoost<span>IA</span>
   </div>
 </a>
