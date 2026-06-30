@@ -35,23 +35,23 @@
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0A0A0F;--bg2:#111118;--bg3:#16161F;--border:rgba(255,255,255,0.08);--primary:#6C63FF;--pl:#8B85FF;--a2:#A78BFA;--green:#10B981;--gold:#C9A84C;--gold2:rgba(201,168,76,0.15);--gold3:rgba(201,168,76,0.30);--text:#F0F0FF;--muted:#9090A8;--r:16px;--sh:0 8px 40px rgba(201,168,76,0.12)}
+:root{--bg:#F6F9FF;--bg2:#FFFFFF;--bg3:#EEF3FA;--bg4:#EAF2FF;--bg5:#F3EFFF;--text:#071126;--text2:#0B1633;--text3:#1E293B;--muted:#64748B;--primary:#2563FF;--primary2:#0F6BFF;--pl:#0F6BFF;--cyan:#22D3EE;--cyan2:#38BDF8;--violet:#6366F1;--violet2:#8B5CF6;--a2:#A78BFA;--green:#10B981;--red:#EF4444;--gold:#B8741A;--gold2:rgba(184,116,26,0.10);--gold3:rgba(184,116,26,0.25);--border:rgba(37,99,255,0.10);--border2:rgba(99,102,241,0.15);--sh:0 4px 24px rgba(37,99,255,0.08);--sh2:0 8px 40px rgba(99,102,241,0.12);--r:20px;--r2:28px;--r3:50px}
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-nav{position:fixed;top:38px;left:0;right:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
-.nl{font-size:1.4rem;font-weight:800;display:flex;align-items:center;gap:.5rem}.nl span{color:var(--primary)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background .3s}
+.nl{font-size:1.4rem;font-weight:800;color:inherit;text-decoration:none;display:flex;align-items:center;gap:8px}.nl span{color:var(--primary)}
 nav ul{display:flex;align-items:center;gap:2rem;list-style:none}
-nav ul a{color:var(--muted);font-size:.9rem;transition:color .2s}
-nav ul a:hover{color:var(--text)}
+nav ul a{color:var(--text3);font-size:.9rem;transition:color .2s}
+nav ul a:hover{color:var(--primary)}
 .nc{background:var(--primary);color:#fff!important;padding:.5rem 1.2rem;border-radius:8px;font-weight:600!important;font-size:.85rem!important}
-.nc:hover{background:var(--pl)!important}
+.nc:hover{background:var(--primary2)!important}
 .hb{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .hb span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
 .hb.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hb.open span:nth-child(2){opacity:0}
 .hb.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mm{display:none;position:fixed;top:103px;left:0;right:0;z-index:99;background:#0A0A0F;border-bottom:1px solid var(--border);padding:1.5rem 2rem;flex-direction:column;gap:1.2rem}
+.mm{display:none;position:fixed;top:65px;left:0;right:0;z-index:99;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1.5rem 2rem;flex-direction:column;gap:1.2rem}
 .mm.open{display:flex}
 .mm a{color:var(--text);font-size:1.1rem;font-weight:600;padding:.4rem 0;border-bottom:1px solid var(--border)}
 .mm a:last-child{border-bottom:none;margin-top:.5rem;background:var(--primary);color:#fff!important;padding:.7rem 1.5rem;border-radius:8px;text-align:center;border:none}
@@ -182,44 +182,27 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 2r
 </head>
 <body>
 
-<!-- Announcement bar -->
-<div class="ab">&#128081; Pack Croissance &mdash; Votre marketing IA en <a href="#commander">pilote automatique. Démarrer &#8594;</a></div>
-
-<!-- Nav -->
-<nav>
-  <a href="/" class="nl">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="14" cy="14" r="12" stroke="#8B85FF" stroke-width="1.2" fill="none" opacity="0.5"/>
-      <circle cx="14" cy="4" r="2" fill="#8B85FF"/>
-      <circle cx="22" cy="9" r="1.8" fill="#7870FF"/>
-      <circle cx="22" cy="19" r="1.8" fill="#7870FF"/>
-      <circle cx="14" cy="24" r="1.8" fill="#A78BFA"/>
-      <circle cx="6" cy="19" r="1.8" fill="#7870FF"/>
-      <circle cx="6" cy="9" r="1.8" fill="#7870FF"/>
-      <path d="M14 4 L22 9 L22 19 L14 24 L6 19 L6 9 Z" fill="none" stroke="#6C63FF" stroke-width="0.8" opacity="0.6"/>
-      <line x1="14" y1="4" x2="14" y2="24" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-      <line x1="6" y1="9" x2="22" y2="19" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-      <line x1="22" y1="9" x2="6" y2="19" stroke="#6C63FF" stroke-width="0.5" opacity="0.35"/>
-      <rect x="9" y="17" width="2.2" height="4" rx="0.7" fill="#6C63FF"/>
-      <rect x="12.2" y="14" width="2.2" height="7" rx="0.7" fill="#8B85FF"/>
-      <rect x="15.4" y="11" width="2.2" height="10" rx="0.7" fill="#A78BFA"/>
-      <path d="M19.5 8.5 L23 5 M23 5 L20.5 5 M23 5 L23 7.5" stroke="#A78BFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    AgenceBoost<span>IA</span>
-  </a>
-  <ul>
-    <li><a href="/#services">Services</a></li>
-    <li><a href="/#pr">Offres</a></li>
-    <li><a href="/agenceboostia-candidature" style="color:#A78BFA">Candidature CV</a></li>
-    <li><a href="/audit-gratuit" class="nc">Audit gratuit</a></li>
-  </ul>
-  <button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
+<div style="background:linear-gradient(90deg,var(--primary),var(--a2));color:#fff;text-align:center;padding:.55rem 1rem;font-size:.82rem;font-weight:600;letter-spacing:.01em">&#9889; Audit flash offert &mdash; <a href="/audit-gratuit" style="color:#fff;text-decoration:underline;text-underline-offset:3px">on analyse votre boutique Shopify et on vous livre 3 actions concrètes en 24h</a> &rarr;</div>
+<nav id="mn">
+<a href="/" class="nl">
+  <img src="/logo-v3.png" alt="AgenceBoostIA" height="38" width="38" style="border-radius:8px">
+  <span style="font-size:1.3rem;font-weight:800;color:var(--text)">AgenceBoost<span style="color:var(--primary)">IA</span></span>
+</a>
+<ul>
+<li><a href="/#sv">Services</a></li>
+<li><a href="/#ps">Processus</a></li>
+<li><a href="/#pr">Offres</a></li>
+<li><a href="/#fq">FAQ</a></li>
+<li><a href="/agenceboostia-candidature" style="color:var(--violet)">Candidature CV</a></li>
+<li><a href="/audit-gratuit" class="nc">&#10003; Audit gratuit</a></li>
+</ul>
+<button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mm" id="mm">
-  <a href="/#services">Services</a>
-  <a href="/#pr">Offres</a>
-  <a href="/agenceboostia-candidature" style="color:#A78BFA;border-bottom:1px solid rgba(255,255,255,0.08)">Candidature CV</a>
-  <a href="/audit-gratuit">Audit gratuit</a>
+<a href="/#sv">Services</a><a href="/#ps">Processus</a>
+<a href="/#pr">Offres</a><a href="/#fq">FAQ</a>
+<a href="/agenceboostia-candidature" style="color:var(--violet);border-bottom:1px solid var(--border)">Candidature CV</a>
+<a href="/audit-gratuit" style="background:var(--primary);color:#fff!important;border-bottom:none;border-radius:8px;text-align:center;padding:.7rem 1.5rem">&#10003; Audit gratuit — 100% gratuit</a>
 </div>
 
 <!-- Hero -->
@@ -503,22 +486,30 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 2r
 
 <!-- Footer -->
 <footer>
-  <p class="fp">© 2026 AgenceBoostIA &mdash; <a href="mailto:contact@agenceboostia.fr" style="color:var(--primary)">contact@agenceboostia.fr</a></p>
-  <div class="fl2">
-    <a href="/">Accueil</a>
-    <a href="/#services">Services</a>
-    <a href="/#pr">Offres</a>
-    <a href="/pack-etincelle">Pack Étincelle</a>
-    <a href="/pack-decollage">Pack Décollage</a>
-    <a href="/audit-gratuit">Audit gratuit</a>
-    <a href="/mentions-legales">Mentions légales</a>
+<a href="/" style="text-decoration:none;color:inherit">
+  <div class="flo">
+    <img src="/logo-v3.png" alt="AgenceBoostIA" height="30" width="30" style="border-radius:6px">
+    AgenceBoost<span>IA</span>
   </div>
+</a>
+<div class="flk">
+<a href="/#sv">Services</a><a href="/#pr">Offres</a>
+<a href="/#fq">FAQ</a><a href="/audit-gratuit">Audit gratuit</a>
+<a href="mailto:contact@agenceboostia.fr">Contact</a>
+<a href="/mentions-legales">Mentions légales</a>
+</div>
+<p>&copy; 2026 AgenceBoostIA — Agence Marketing IA et Création Web. Tous droits réservés.</p>
 </footer>
 
+<a href="https://wa.me/33600000000" class="wa-btn" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script>
-const hb = document.getElementById('hb');
-const mm = document.getElementById('mm');
-hb.addEventListener('click', () => { hb.classList.toggle('open'); mm.classList.toggle('open'); });
+var hb=document.getElementById('hb'),mm=document.getElementById('mm');
+hb.addEventListener('click',function(){hb.classList.toggle('open');mm.classList.toggle('open')});
+mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hb.classList.remove('open');mm.classList.remove('open')})});
+window.addEventListener('scroll',function(){document.getElementById('mn').style.background=window.scrollY>50?'rgba(255,255,255,0.98)':'rgba(255,255,255,0.85)'});
 
 function toggle(btn) {
   const item = btn.closest('.fitem');
