@@ -112,9 +112,9 @@ nav ul a:hover{color:var(--primary)}
 .btn-primary:hover{box-shadow:0 6px 30px rgba(37,99,255,0.45);transform:translateY(-2px)}
 .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--text3);padding:.78rem 1.6rem;border-radius:12px;font-weight:600;font-size:.93rem;border:1.5px solid var(--border2);transition:all .2s}
 .btn-secondary:hover{border-color:var(--primary);color:var(--primary);background:rgba(37,99,255,0.03)}
-.hero-trust{display:flex;gap:1.5rem;flex-wrap:wrap}
-.hero-trust-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--muted)}
-.hero-trust-item::before{content:'✓';color:var(--green);font-weight:700;font-size:.75rem}
+.hero-trust{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;justify-content:flex-start}
+.hero-trust-item{display:inline-flex;align-items:center;gap:.35rem;font-size:.875rem;color:#64748B;font-weight:500}
+.hero-trust-sep{color:#CBD5E1;font-size:.75rem;line-height:1}
 
 /* ─── AUDIT MOCKUP ─── */
 .audit-card{background:rgba(255,255,255,0.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.6);border-radius:var(--r2);box-shadow:0 8px 40px rgba(99,102,241,0.12),0 2px 8px rgba(99,102,241,0.06);padding:1.6rem;position:relative;overflow:hidden;max-width:420px;margin-left:auto}
@@ -375,9 +375,13 @@ footer>p{color:var(--muted);font-size:.82rem}
         <a href="#sv" class="btn-secondary">Voir les services</a>
       </div>
       <div class="hero-trust">
-        <span class="hero-trust-item">Rapport en 24h</span>
-        <span class="hero-trust-item">Propriété 100% client</span>
-        <span class="hero-trust-item">Sans engagement</span>
+        <span class="hero-trust-item">&#9889; Livraison en 7 jours</span>
+        <span class="hero-trust-sep">·</span>
+        <span class="hero-trust-item">&#10003; Audit gratuit inclus</span>
+        <span class="hero-trust-sep">·</span>
+        <span class="hero-trust-item">&#128274; Propriété 100% client</span>
+        <span class="hero-trust-sep">·</span>
+        <span class="hero-trust-item">&#9675; Sans engagement</span>
       </div>
     </div>
 
